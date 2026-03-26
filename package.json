@@ -1,0 +1,41 @@
+{
+  "name": "sword-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "bcryptjs": "^3.0.3",
+    "bootstrap": "^5.3.8",
+    "classnames": "^2.5.1",
+    "mongoose": "^9.0.1",
+    "next": "16.0.10",
+    "next-auth": "^4.24.13",
+    "react": "19.2.1",
+    "react-bootstrap": "^2.10.10",
+    "react-countup": "^6.5.3",
+    "react-dom": "19.2.1",
+    "react-hot-toast": "^2.6.0",
+    "react-modal-video": "^2.0.2",
+    "sass": "^1.96.0",
+    "swiper": "^12.0.3"
+  },
+  "devDependencies": {
+    "@types/aos": "^3.0.7",
+    "@types/bcryptjs": "^3.0.0",
+    "@types/bootstrap": "^5.2.10",
+    "@types/jquery": "^3.5.33",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.10",
+    "typescript": "^5"
+  }
+}

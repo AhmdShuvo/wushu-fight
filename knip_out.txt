@@ -1,0 +1,78 @@
+[93m[4mUnused files[24m[39m (52)
+app/components/About.tsx                      
+app/components/Blog.tsx                       
+app/components/BlogSection.tsx                
+app/components/CallToAction.tsx               
+app/components/Event.tsx                      
+app/components/Gallery.tsx                    
+app/components/Plan.tsx                       
+app/components/Schedule.tsx                   
+app/components/Service.tsx                    
+app/components/Subscribe.tsx                  
+app/components/Testimonial.tsx                
+app/components/Training.tsx                   
+app/components/TrainingSlider.tsx             
+app/components/Tutorial.tsx                   
+public/assets/js/aos.js                       
+public/assets/js/bootstrap.min.js             
+public/assets/js/circle-progress.min.js       
+public/assets/js/flipclock.min.js             
+public/assets/js/isotope.pkgd.min.js          
+public/assets/js/jquery.countdown.min.js      
+public/assets/js/jquery.easypiechart.js       
+public/assets/js/jquery.js                    
+public/assets/js/jquery.nice-select.js        
+public/assets/js/jquery.paroller.min.js       
+public/assets/js/lightcase.js                 
+public/assets/js/main.js                      
+public/assets/js/odometer.min.js              
+public/assets/js/preloader.js                 
+public/assets/js/swiper.min.js                
+public/assets/js/viewport.jquery.js           
+public/assets/sass/style.scss                 
+public/assets/icomoon/demo-files/demo.js      
+public/assets/sass/abstracts/_abstracts.scss  
+public/assets/sass/abstracts/_mixins.scss     
+public/assets/sass/abstracts/_variables.scss  
+public/assets/sass/base/_base.scss            
+public/assets/sass/base/_reset.scss           
+public/assets/sass/base/_typography.scss      
+public/assets/sass/components/_animations.scss
+public/assets/sass/components/_buttons.scss   
+public/assets/sass/components/_components.scss
+public/assets/sass/components/_forms.scss     
+public/assets/sass/components/_overlay.scss   
+public/assets/sass/layout/_footer.scss        
+public/assets/sass/layout/_header.scss        
+public/assets/sass/layout/_introduction.scss  
+public/assets/sass/layout/_layout.scss        
+public/assets/sass/pages/_blog.scss           
+public/assets/sass/pages/_pages.scss          
+public/assets/sass/pages/_sections.scss       
+public/assets/sass/pages/_team.scss           
+public/assets/sass/pages/_testimonial.scss    
+[93m[4mUnused dependencies[24m[39m (3)
+bootstrap        package.json:14:6
+classnames       package.json:15:6
+react-bootstrap  package.json:20:6
+[93m[4mUnused devDependencies[24m[39m (3)
+@types/bcryptjs   package.json:30:6
+@types/bootstrap  package.json:31:6
+@types/jquery     package.json:32:6
+[93m[4mUnused exports[24m[39m (3)
+getAuthSession  function  lib/auth.ts:6:23 
+isAdmin         function  lib/auth.ts:10:23
+isSuperAdmin    function  lib/auth.ts:16:23
+[93m[4mUnused exported types[24m[39m (11)
+IAbout        interface  models/About.ts:3:18      
+IBanner       interface  models/Banner.ts:3:18     
+ICTA          interface  models/CTA.ts:3:18        
+IFeature      interface  models/Feature.ts:3:18    
+IGallery      interface  models/Gallery.ts:3:18    
+INews         interface  models/News.ts:3:18       
+ISchedule     interface  models/Schedule.ts:3:18   
+ITestimonial  interface  models/Testimonial.ts:3:18
+ITrainer      interface  models/Trainer.ts:3:18    
+IStyle        interface  models/Style.ts:3:18      
+IUser         interface  models/User.ts:9:18       
+[33m[4mConfiguration hints[24m (1)[39m
