@@ -6,7 +6,7 @@ export default function Service() {
             <div className="container">
                 <div className="service-area">
                     <div className="service-element">
-                        <img src="assets/images/element/element-24.png" alt="element" />
+                        <img src="/assets/images/element/element-24.png" alt="element" />
                     </div>
                     <div className="row justify-content-center mb-10-none">
                         <div className="col-xl-12">
@@ -15,7 +15,7 @@ export default function Service() {
                                     <div className="swiper-slide">
                                         <div className="service-item">
                                             <div className="service-thumb">
-                                                <img src="assets/images/service/service-1.png" alt="service" />
+                                                <img src="/assets/images/service/service-1.png" alt="service" />
                                                 <div className="service-overlay">
                                                     <div className="service-overlay-content">
                                                         <h3 className="title"><a href="training-details.html">PREFederation MARTIAL ARTS</a></h3>
@@ -27,7 +27,7 @@ export default function Service() {
                                     <div className="swiper-slide">
                                         <div className="service-item">
                                             <div className="service-thumb">
-                                                <img src="assets/images/service/service-2.png" alt="service" />
+                                                <img src="/assets/images/service/service-2.png" alt="service" />
                                                 <div className="service-overlay">
                                                     <div className="service-overlay-content">
                                                         <h3 className="title"><a href="training-details.html">PREFederation MARTIAL ARTS</a></h3>
@@ -39,7 +39,7 @@ export default function Service() {
                                     <div className="swiper-slide">
                                         <div className="service-item">
                                             <div className="service-thumb">
-                                                <img src="assets/images/service/service-3.png" alt="service" />
+                                                <img src="/assets/images/service/service-3.png" alt="service" />
                                                 <div className="service-overlay">
                                                     <div className="service-overlay-content">
                                                         <h3 className="title"><a href="training-details.html">PREFederation MARTIAL ARTS</a></h3>

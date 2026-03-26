@@ -7,7 +7,7 @@ export default function Event() {
                 <div className="row justify-content-center">
                     <div className="col-xl-6 col-lg-8 text-center">
                         <div className="section-header" data-aos="fade-up" data-aos-duration="1200">
-                            <h2 className="section-title">OUR <span>Wushu</span> EVENTS</h2>
+                            <h2 className="section-title">OUR <span>EVENTS</span> </h2>
                             <p>Fight Federation has specialized in martial arts since 1986 and has one of the most innovative programs in the nation.</p>
                         </div>
                     </div>
@@ -15,7 +15,7 @@ export default function Event() {
                 <div className="row justify-content-center mb-30-none">
                     <div className="col-xl-6 col-lg-6 mb-30">
                         <div className="event-thumb" data-aos="fade-right" data-aos-duration="1200">
-                            <img src="assets/images/bg/bg-9.png" alt="bg" />
+                            <img src="/assets/images/bg/bg-9.png" alt="bg" />
                         </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 mb-30">

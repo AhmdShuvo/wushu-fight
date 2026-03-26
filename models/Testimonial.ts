@@ -7,6 +7,7 @@ export interface ITestimonial extends Document {
     image: string;
     rating: number;
     order: number;
+    isApproved: boolean;
 }
 
 const TestimonialSchema: Schema = new Schema({
@@ -16,6 +17,7 @@ const TestimonialSchema: Schema = new Schema({
     image: { type: String, required: true },
     rating: { type: Number, default: 5 },
     order: { type: Number, default: 0 },
+    isApproved: { type: Boolean, default: false },
 }, { timestamps: true });
 
 export default mongoose.models.Testimonial || mongoose.model<ITestimonial>('Testimonial', TestimonialSchema);

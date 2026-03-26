@@ -3,151 +3,98 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-import { useSession } from 'next-auth/react';
+import InnerBanner from '../../components/InnerBanner';
 
-export default function TestimonialsAdmin() {
-    const { data: session } = useSession();
+export default function TestimonialModeration() {
     const [testimonials, setTestimonials] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [editingTestimonial, setEditingTestimonial] = useState<any>(null);
+
+    const fetchTestimonials = () => {
+        fetch('/api/admin/testimonials')
+            .then(res => res.json())
+            .then(data => {
+                if (data.testimonials) setTestimonials(data.testimonials);
+                setLoading(false);
+            });
+    };
 
     useEffect(() => {
         fetchTestimonials();
     }, []);
 
-    const fetchTestimonials = () => {
-        fetch('/api/testimonials')
-            .then(res => res.json())
-            .then(data => {
-                setTestimonials(data.testimonials || []);
-                setLoading(false);
-            });
-    };
+    const toggleApproval = async (id: string, currentStatus: boolean) => {
+        const loadToast = toast.loading(`${currentStatus ? 'Unapproving' : 'Approving'}...`);
+        const res = await fetch(`/api/admin/testimonials/${id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ isApproved: !currentStatus }),
+        });
 
-    const handleEdit = (item: any) => {
-        setEditingTestimonial(item);
+        if (res.ok) {
+            toast.success(`Success!`, { id: loadToast });
+            fetchTestimonials();
+        } else {
+            toast.error('Operation failed', { id: loadToast });
+        }
     };
 
     const handleDelete = async (id: string) => {
-        if (!window.confirm("Are you sure?")) return;
-        const res = await fetch(`/api/testimonials?id=${id}`, { method: 'DELETE' });
+        if (!confirm('Are you sure you want to delete this testimonial?')) return;
+        const loadToast = toast.loading('Deleting...');
+        const res = await fetch(`/api/admin/testimonials/${id}`, { method: 'DELETE' });
+
         if (res.ok) {
+            toast.success('Deleted', { id: loadToast });
             fetchTestimonials();
-            toast.success('Deleted successfully');
         } else {
-            toast.error('Failed to delete');
+            toast.error('Delete failed', { id: loadToast });
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const loadToast = toast.loading('Saving...');
-        const res = await fetch('/api/testimonials', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(editingTestimonial),
-        });
-        if (res.ok) {
-            setEditingTestimonial(null);
-            fetchTestimonials();
-            toast.success('Saved successfully!', { id: loadToast });
-        } else {
-            toast.error('Error saving testimonial', { id: loadToast });
-        }
-    };
-
-    if (loading) return <div className="p-5 text-dark">Loading...</div>;
+    if (loading) return <div className="ptb-120 text-center text-white"><h2>Loading...</h2></div>;
 
     return (
-        <div className="p-5" style={{ background: '#f8f9fa', color: '#212529', minHeight: '100vh' }}>
-            <div className="d-flex justify-content-between align-items-center mb-4">
-                <h1 className="text-dark">Manage Testimonials</h1>
-                <Link href="/admin" className="btn btn-outline-secondary">Back to Dashboard</Link>
-            </div>
+        <>
+            <InnerBanner title="TESTIMONIALS" subtitle="MODERATION" bgImage="/assets/images/bg/bg-12.png" activePage="Moderate Feedback" />
 
-            {editingTestimonial ? (
-                <div className="p-4 border rounded mb-5 bg-white shadow-sm">
-                    <h2 className="text-dark mb-4">{editingTestimonial._id ? 'Edit Testimonial' : 'Add New Testimonial'}</h2>
-                    <form onSubmit={handleSubmit} className="row g-3">
-                        <div className="col-md-6">
-                            <label className="form-label text-dark">Name</label>
-                            <input type="text" className="form-control" value={editingTestimonial.name} onChange={(e) => setEditingTestimonial({ ...editingTestimonial, name: e.target.value })} required />
-                        </div>
-                        <div className="col-md-6">
-                            <label className="form-label text-dark">Role</label>
-                            <input type="text" className="form-control" value={editingTestimonial.role} onChange={(e) => setEditingTestimonial({ ...editingTestimonial, role: e.target.value })} required />
-                        </div>
-                        <div className="col-12">
-                            <label className="form-label text-dark">Testimonial Text</label>
-                            <textarea className="form-control" rows={3} value={editingTestimonial.text} onChange={(e) => setEditingTestimonial({ ...editingTestimonial, text: e.target.value })} required></textarea>
-                        </div>
-                        <div className="col-md-4">
-                            <label className="form-label text-dark">Image Filename (e.g. client-1.png)</label>
-                            <input type="text" className="form-control" value={editingTestimonial.image} onChange={(e) => setEditingTestimonial({ ...editingTestimonial, image: e.target.value })} required />
-                        </div>
-                        <div className="col-md-4">
-                            <label className="form-label text-dark">Rating (1-5)</label>
-                            <input type="number" min="1" max="5" className="form-control" value={editingTestimonial.rating || 5} onChange={(e) => setEditingTestimonial({ ...editingTestimonial, rating: parseInt(e.target.value) })} />
-                        </div>
-                        <div className="col-md-2">
-                            <label className="form-label text-dark">Order</label>
-                            <input type="number" className="form-control" value={editingTestimonial.order || 0} onChange={(e) => setEditingTestimonial({ ...editingTestimonial, order: parseInt(e.target.value) })} />
-                        </div>
-                        <div className="col-12 mt-3">
-                            <button type="submit" className="btn btn-success me-2">Save</button>
-                            <button type="button" className="btn btn-secondary" onClick={() => setEditingTestimonial(null)}>Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            ) : (
-                <button className="btn btn-danger mb-4" onClick={() => setEditingTestimonial({ name: '', role: '', text: '', image: 'client-1.png', rating: 5, order: 0 })}>
-                    Add New Testimonial
-                </button>
-            )}
+            <section className="account-widget-section ptb-120" style={{ backgroundColor: '#000' }}>
+                <div className="container" style={{ maxWidth: '1200px' }}>
+                    <div className="d-flex justify-content-between align-items-center mb-60">
+                        <h2 className="section-title">Testimonial <span>Approval</span> System</h2>
+                        <Link href="/admin" className="btn--base">Back to Dashboard</Link>
+                    </div>
 
-            <div className="row g-4">
-                {testimonials.map((item) => (
-                    <div key={item._id} className="col-md-6">
-                        <div className="card shadow-sm h-100 p-3">
-                            <div className="d-flex align-items-center mb-3">
-                                <img src={`/assets/images/client/${item.image}`} alt="client" width="60" className="rounded-circle me-3" />
-                                <div>
-                                    <h4 className="card-title h5 mb-0 text-dark">{item.name}</h4>
-                                    <p className="text-danger mb-0 small">{item.role}</p>
+                    <div className="row g-4">
+                        {testimonials.map((t) => (
+                            <div className="col-lg-6" key={t._id}>
+                                <div className="p-4 rounded shadow-sm h-100" style={{ backgroundColor: '#111', border: `2px solid ${t.isApproved ? '#28a745' : '#dc3545'}` }}>
+                                    <div className="d-flex align-items-center mb-3">
+                                        <img src={t.image || '/assets/images/client/client-1.png'} alt="user" className="rounded-circle mr-3" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+                                        <div>
+                                            <h5 className="text-white mb-0">{t.name}</h5>
+                                            <span className="text-danger small">{t.role}</span>
+                                        </div>
+                                        <div className="ml-auto">
+                                            <span className={`badge ${t.isApproved ? 'bg-success' : 'bg-danger'}`}>
+                                                {t.isApproved ? 'APPROVED' : 'PENDING'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p className="text-white-50 small italic mb-4">"{t.text}"</p>
+                                    <div className="d-flex gap-3">
+                                        <button onClick={() => toggleApproval(t._id, t.isApproved)} className={`btn btn-sm ${t.isApproved ? 'btn-outline-warning' : 'btn-success'} w-100`}>
+                                            {t.isApproved ? <><i className="fas fa-times me-2"></i> Unapprove</> : <><i className="fas fa-check me-2"></i> Approve</>}
+                                        </button>
+                                        <button onClick={() => handleDelete(t._id)} className="btn btn-sm btn-outline-danger px-4">
+                                            <i className="fas fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <p className="card-text text-muted flex-grow-1" style={{ fontStyle: 'italic' }}>"{item.text}"</p>
-                            <div className="mt-3">
-                                <button className="btn btn-sm btn-outline-primary me-2" onClick={() => handleEdit(item)}>Edit</button>
-                                <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(item._id)}>Delete</button>
-                            </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-
-            {session?.user?.role === 'super_admin' && (
-                <div className="mt-5 p-4 border rounded bg-white shadow-sm">
-                    <h3 className="text-danger">Initial Setup</h3>
-                    <p className="text-muted">If you haven't seeded the data yet, click the button below:</p>
-                    <button
-                        onClick={async () => {
-                            const loadToast = toast.loading('Seeding data...');
-                            try {
-                                const res = await fetch('/api/seed/testimonials');
-                                const data = await res.json();
-                                toast.success(data.message, { id: loadToast });
-                                setTimeout(() => window.location.reload(), 1500);
-                            } catch (err) {
-                                toast.error('Seeding failed', { id: loadToast });
-                            }
-                        }}
-                        className="btn btn-warning"
-                    >
-                        Seed Initial Data
-                    </button>
                 </div>
-            )}
-        </div>
+            </section>
+        </>
     );
 }

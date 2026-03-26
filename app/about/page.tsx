@@ -1,7 +1,9 @@
 import React from 'react';
 import Breadcrumb from '../components/Breadcrumb';
-import Feature from '../components/Feature';
 import Trainer from '../components/Trainer';
+import Service from '../components/Service';
+import Event from '../components/Event';
+import Testimonial from '../components/Testimonial';
 
 export default function AboutPage() {
     return (
@@ -168,134 +170,13 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <Feature />
-
             <Trainer />
 
-            {/* Client Section (Inline as it differs from Testimonial component) */}
-            <section className="client-section ptb-120">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xl-12">
-                            <div className="section-header-wrapper">
-                                <div className="section-header" data-aos="fade-right" data-aos-duration="1200">
-                                    <h2 className="section-title">OUR <span>STUDENT'S</span> TESTIMONIAL</h2>
-                                    <p>Fight Federation has specialized in martial arts since 1986 and has one of the most innovative programs in the nation.</p>
-                                </div>
-                                <div className="slider-nav-area" data-aos="fade-left" data-aos-duration="1200">
-                                    <div className="slider-prev">
-                                        <i className="fas fa-chevron-left"></i>
-                                    </div>
-                                    <div className="slider-next">
-                                        <i className="fas fa-chevron-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="client-area">
-                        <div className="row justify-content-center">
-                            <div className="col-xl-12 col-lg-12">
-                                <div className="client-slider-two" data-aos="fade-up" data-aos-duration="1200">
-                                    <div className="swiper-wrapper">
-                                        <div className="swiper-slide">
-                                            <div className="client-item">
-                                                <div className="client-header">
-                                                    <div className="client-quote">
-                                                        <img src="/assets/images/client/quote.png" alt="client" />
-                                                    </div>
-                                                    <div className="client-thumb">
-                                                        <img src="/assets/images/client/client-1.png" alt="client" />
-                                                    </div>
-                                                </div>
-                                                <div className="client-content">
-                                                    <p>Fight Federation has specialized in martial arts since 1986 and has one of the most
-                                                        Fight Federation has specialized.</p>
-                                                </div>
-                                                <div className="client-footer">
-                                                    <div className="client-footer-left">
-                                                        <h4 className="title"><a href="#0">Randall Schwartz</a></h4>
-                                                        <span className="sub-title">Women's Trainner</span>
-                                                    </div>
-                                                    <div className="client-footer-right">
-                                                        <span className="ratings">
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star active"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="swiper-slide">
-                                            <div className="client-item">
-                                                <div className="client-header">
-                                                    <div className="client-quote">
-                                                        <img src="/assets/images/client/quote.png" alt="client" />
-                                                    </div>
-                                                    <div className="client-thumb">
-                                                        <img src="/assets/images/client/client-2.png" alt="client" />
-                                                    </div>
-                                                </div>
-                                                <div className="client-content">
-                                                    <p>We teach martial arts because we love it — not because we want to make money on you. Unlike other martial.</p>
-                                                </div>
-                                                <div className="client-footer">
-                                                    <div className="client-footer-left">
-                                                        <h4 className="title"><a href="#0">Andru Smith</a></h4>
-                                                        <span className="sub-title">Wushu Trainer</span>
-                                                    </div>
-                                                    <div className="client-footer-right">
-                                                        <span className="ratings">
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star active"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="swiper-slide">
-                                            <div className="client-item">
-                                                <div className="client-header">
-                                                    <div className="client-quote">
-                                                        <img src="/assets/images/client/quote.png" alt="client" />
-                                                    </div>
-                                                    <div className="client-thumb">
-                                                        <img src="/assets/images/client/client-3.png" alt="client" />
-                                                    </div>
-                                                </div>
-                                                <div className="client-content">
-                                                    <p>We teach martial arts because we love it — not because we want to make money on you. Unlike other martial.</p>
-                                                </div>
-                                                <div className="client-footer">
-                                                    <div className="client-footer-left">
-                                                        <h4 className="title"><a href="#0">Mick Tick</a></h4>
-                                                        <span className="sub-title">Wushu Trainer</span>
-                                                    </div>
-                                                    <div className="client-footer-right">
-                                                        <span className="ratings">
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star"></i>
-                                                            <i className="fas fa-star active"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Service />
+
+            <Testimonial />
+
+            <Event />
         </>
     );
 }

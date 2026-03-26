@@ -10,10 +10,15 @@ export default function AdminDashboard() {
         { name: 'Banner Slides', href: '/admin/banner', icon: 'fa-images', category: 'HOME PAGE' },
         { name: 'Ticker Updates', href: '/admin/ticker', icon: 'fa-bell', category: 'HOME PAGE' },
         { name: 'Home Game Board', href: '/admin/home-grid', icon: 'fa-th-large', category: 'HOME PAGE' },
+        { name: 'Yearly Calendar', href: '/admin/calendar', icon: 'fa-calendar-alt', category: 'HOME PAGE' },
+        { name: 'Tournament Events', href: '/admin/tournament-events', icon: 'fa-trophy', category: 'HOME PAGE' },
         
         { name: 'Gallery Management', href: '/admin/gallery', icon: 'fa-photo-video', category: 'ASSETS' },
         
         { name: 'Contact & Socials', href: '/admin/contact', icon: 'fa-address-card', category: 'GLOBAL' },
+        { name: 'Static Pages/Story', href: '/admin/pages', icon: 'fa-file-alt', category: 'GLOBAL' },
+        { name: 'Admin/Team Members', href: '/admin/members', icon: 'fa-user-tie', category: 'GLOBAL' },
+        { name: 'Testimonial Moderation', href: '/admin/testimonials', icon: 'fa-comment-dots', category: 'GLOBAL' },
         { name: 'Footer Quick Links', href: '/admin/contact#footer', icon: 'fa-link', category: 'GLOBAL' },
 
     ];

@@ -1,6 +1,8 @@
 import Banner from "./components/Banner";
 import SwiperInit from "./components/SwiperInit";
 import HomeContentGrid from "./components/HomeContentGrid";
+import Calendar from "./components/Calendar";
+import Testimonial from "./components/Testimonial";
 
 export const dynamic = 'force-dynamic';
 
@@ -15,16 +17,11 @@ export default function Home() {
       {/* 3. Content Grid */}
       <HomeContentGrid />
 
-      {/* Kept existing sections commented out in case they're needed back
-      <Service />
-      <About />
-      <Feature />
-      <CallToAction />
-      <Training />
-      <Trainer />
-      <Event />
+      {/* 4. Calendar Section */}
+      <Calendar />
+
+      {/* 5. Testimonial Section */}
       <Testimonial />
-      */}
     </>
   );
 }

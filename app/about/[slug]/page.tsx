@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import InnerBanner from '@/app/components/InnerBanner';
 import Image from 'next/image';
+import { useParams } from 'next/navigation';
 
 const aboutData: Record<string, any> = {
     'history': {
@@ -100,11 +103,40 @@ const aboutData: Record<string, any> = {
     }
 };
 
-export default async function AboutPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    const data = aboutData[slug];
+export default function AboutPage() {
+    const params = useParams();
+    const slug = params?.slug as string;
+    const [dynamicMembers, setDynamicMembers] = React.useState<any[]>([]);
+    const [dbData, setDbData] = React.useState<any>(null);
+    const [loading, setLoading] = React.useState(true);
 
-    if (!data) {
+    React.useEffect(() => {
+        setLoading(true);
+        if (slug === 'founding-members' || slug === 'executive-committee') {
+            const category = slug === 'founding-members' ? 'founding' : 'executive';
+            fetch(`/api/members?category=${category}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.members) setDynamicMembers(data.members);
+                    setLoading(false);
+                })
+                .catch(() => setLoading(false));
+        } else {
+            // Fetch dynamic page content
+            fetch(`/api/pages?slug=${slug}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.page) setDbData(data.page);
+                    setLoading(false);
+                })
+                .catch(() => setLoading(false));
+        }
+    }, [slug]);
+
+    // Use DB data if available, otherwise fallback to static data
+    const data = dbData || aboutData[slug];
+
+    if (!data && !loading) {
         return (
             <>
                 <InnerBanner title="Not Found" subtitle="Error" bgImage="/assets/images/bg/bg-12.png" activePage="404" />
@@ -113,9 +145,20 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
         );
     }
 
+    if (loading) {
+        return (
+            <div className="ptb-120 text-center">
+                <div className="spinner-border text-danger"></div>
+                <p className="mt-3">Loading page content...</p>
+            </div>
+        );
+    }
+
+    const teamToDisplay = (slug === 'founding-members' || slug === 'executive-committee') ? dynamicMembers : data.team;
+
     return (
         <>
-            <InnerBanner title={data.title} subtitle={data.subtitle} bgImage="/assets/images/bg/bg-12.png" activePage={data.title} />
+            {/* <InnerBanner title={data.title} subtitle={data.subtitle} bgImage="/assets/images/bg/bg-12.png" activePage={data.title} /> */}
 
             {/* Content & Image Layout */}
             {data.layout === 'content-image' && (
@@ -188,9 +231,9 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
                 </section>
             )}
 
-            {/* Team Grid Layout */}
-            {data.layout === 'team-grid' && (
-                <section className="team-section ptb-120" style={{ backgroundColor: '#f9f9f9' }}>
+            {/* Organogram Layout */}
+            {(data.layout === 'team-grid' || data.layout === 'organogram') && (
+                <section className="organogram-section ptb-120" style={{ backgroundColor: '#f9f9f9' }}>
                     <div className="container">
                         <div className="row justify-content-center mb-60">
                             <div className="col-lg-8 text-center">
@@ -198,21 +241,70 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
                                 <p className="text-muted mt-3">{data.description}</p>
                             </div>
                         </div>
-                        <div className="row justify-content-center">
-                            {data.team.map((member: any, i: number) => (
-                                <div className="col-lg-4 col-md-6 mb-30" key={i} data-aos="zoom-in" data-aos-duration="1000" data-aos-delay={i * 100}>
-                                    <div className="team-item bg-white p-5 text-center h-100 shadow-sm" style={{ borderRadius: '15px', borderBottom: '4px solid #dc3545' }}>
-                                        <div className="member-thumb mb-4 mx-auto" style={{ width: '120px', height: '120px', borderRadius: '50%', backgroundColor: '#eee', overflow: 'hidden' }}>
-                                            <img src={`/assets/images/trainer/trainer-${(i % 3) + 1}.png`} alt={member.name} className="w-100 h-100" style={{ objectFit: 'cover' }} />
+
+                        {/* Modern Bento Grid Structure for Members */}
+                        <div className="member-bento-container w-100">
+                            {/* Top Tier: Principal Leader */}
+                            {teamToDisplay?.length > 0 && (
+                                <div className="leadership-tier mb-60 text-center">
+                                    <div className="leadership-card mx-auto shadow-lg bg-white p-5 text-center border-top border-5 border-danger position-relative overflow-hidden" style={{ maxWidth: '600px', borderRadius: '20px' }}>
+                                        <div className="member-thumb mb-4 mx-auto" style={{ width: '150px', height: '150px', borderRadius: '50%', backgroundColor: '#eee', overflow: 'hidden', border: '5px solid #f8f9fa' }}>
+                                            <img src={teamToDisplay[0].image || "/assets/images/trainer/trainer-1.png"} alt={teamToDisplay[0].name} className="w-100 h-100" style={{ objectFit: 'cover' }} />
                                         </div>
-                                        <h4 className="text-dark mb-1">{member.name}</h4>
-                                        <span className="text-danger d-block mb-3 font-weight-bold">{member.role}</span>
-                                        <p className="text-muted small">{member.desc}</p>
+                                        <h3 className="text-dark mb-1 h4" style={{ fontWeight: '800', letterSpacing: '1px' }}>{teamToDisplay[0].name}</h3>
+                                        <span className="text-danger d-block mb-4 font-weight-bold text-uppercase" style={{ fontSize: '14px', letterSpacing: '2px' }}>{teamToDisplay[0].role}</span>
+                                        <p className="text-muted mb-0" style={{ fontSize: '16px', lineHeight: '1.6' }}>{teamToDisplay[0].desc}</p>
                                     </div>
                                 </div>
-                            ))}
+                            )}
+
+                            {/* Secondary Tiers: Bento Grid for rest of the team */}
+                            {teamToDisplay?.length > 1 && (
+                                <div className="member-bento-grid">
+                                    {teamToDisplay.slice(1).map((member: any, i: number) => (
+                                        <div className={`member-bento-item shadow-sm bg-white p-4 transition-all ${i % 3 === 0 ? 'large-bt' : 'normal-bt'}`} key={i} data-aos="fade-up" data-aos-duration="800" data-aos-delay={i * 100}>
+                                            <div className="d-flex flex-column h-100">
+                                                <div className="d-flex align-items-center mb-3">
+                                                    <div className="member-thumb-small mr-3" style={{ width: '70px', height: '70px', borderRadius: '50%', backgroundColor: '#eee', overflow: 'hidden', flexShrink: 0 }}>
+                                                        <img src={member.image || `/assets/images/trainer/trainer-${(i % 3) + 2}.png`} alt={member.name} className="w-100 h-100" style={{ objectFit: 'cover' }} />
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="text-dark mb-0 h6" style={{ fontWeight: 'bold' }}>{member.name}</h4>
+                                                        <span className="text-danger d-block small font-weight-bold">{member.role}</span>
+                                                    </div>
+                                                </div>
+                                                <p className="text-muted mb-0 mt-auto" style={{ fontSize: '13px', lineHeight: '1.5' }}>{member.desc}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
+                    <style jsx>{`
+                        .member-bento-grid {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                            gap: 25px;
+                            width: 100%;
+                        }
+                        .member-bento-item {
+                            border-radius: 15px;
+                            border-left: 4px solid #333;
+                            transition: all 0.3s ease;
+                        }
+                        .member-bento-item:hover {
+                            transform: translateY(-8px);
+                            box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+                            border-left-color: #dc3545;
+                        }
+                        .large-bt { grid-column: span 1; }
+                        @media (max-width: 991px) {
+                            .member-bento-grid {
+                                grid-template-columns: 1fr;
+                            }
+                        }
+                    `}</style>
                 </section>
             )}
 

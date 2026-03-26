@@ -17,6 +17,8 @@ export default function Header() {
     const pathname = usePathname();
 
 
+    const [dynamicPages, setDynamicPages] = useState<any[]>([]);
+    
     useEffect(() => {
         setIsMounted(true);
         const handleScroll = () => {
@@ -36,6 +38,13 @@ export default function Header() {
                         resourcesText: data.ticker.resourcesText
                     });
                 }
+            });
+
+        // Fetch dynamic informational pages
+        fetch('/api/pages')
+            .then(res => res.json())
+            .then(data => {
+                if (data.pages) setDynamicPages(data.pages);
             });
 
         window.addEventListener('scroll', handleScroll);
@@ -95,7 +104,7 @@ export default function Header() {
                         <div className="header-menu-content">
                             <nav className="navbar navbar-expand-xl p-0">
                                 <Link className="site-logo site-title d-block d-xl-none" href="/">
-                                    <img src="/assets/images/logo-removebg-preview.png" alt="site-logo" />
+                                    <img src="/assets/images/wushu_logo.png" alt="site-logo" height={40} width={50} />
                                 </Link>
                                 <button className="navbar-toggler ml-auto" type="button" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span className="fas fa-bars"></span>
@@ -264,13 +273,19 @@ export default function Header() {
                                         <li className="menu_has_children" style={navItemStyle}>
                                             <a href="#0" onClick={(e) => toggleSubMenu(e, 'about')}>ABOUT BWUF</a>
                                             <ul className={getDropdownClass('about')}>
-                                                <li><Link href="/about/history" style={dropItemStyle} className="sub-menu-item">History</Link></li>
-                                                <li><Link href="/about/mission" style={dropItemStyle} className="sub-menu-item">Mission</Link></li>
-                                                <li><Link href="/about/vision" style={dropItemStyle} className="sub-menu-item">Vision</Link></li>
+                                                {dynamicPages.length > 0 ? (
+                                                    dynamicPages.map(p => (
+                                                        <li key={p.slug}><Link href={`/about/${p.slug}`} style={dropItemStyle} className="sub-menu-item">{p.title}</Link></li>
+                                                    ))
+                                                ) : (
+                                                    <>
+                                                        <li><Link href="/about/history-of-bwuf" style={dropItemStyle} className="sub-menu-item">History of BWUF</Link></li>
+                                                        <li><Link href="/about/our-mission" style={dropItemStyle} className="sub-menu-item">Our Mission</Link></li>
+                                                        <li><Link href="/about/our-vision" style={dropItemStyle} className="sub-menu-item">Our Vision</Link></li>
+                                                    </>
+                                                )}
                                                 <li><Link href="/about/founding-members" style={dropItemStyle} className="sub-menu-item">Founding Members</Link></li>
                                                 <li><Link href="/about/executive-committee" style={dropItemStyle} className="sub-menu-item">Current Executive Committee</Link></li>
-                                                <li><Link href="/about/other-committees" style={dropItemStyle} className="sub-menu-item">Other BWUF Committees</Link></li>
-                                                <li><Link href="/about/affiliates" style={dropItemStyle} className="sub-menu-item">Affiliates (Clubs, Organizations)</Link></li>
                                             </ul>
                                         </li>
 
@@ -286,7 +301,7 @@ export default function Header() {
 
                                         <li>
                                             <Link className="site-logo site-title d-none d-xl-flex align-items-center mx-4" href="/">
-                                                <img src="/assets/images/logo-removebg-preview.png" alt="site-logo" style={{ maxWidth: '100px' }} />
+                                                <img src="/assets/images/wushu_logo.png" height={40} width={50} alt="site-logo" style={{ maxWidth: '100px' }} />
                                             </Link>
                                         </li>
 
