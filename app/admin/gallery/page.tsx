@@ -105,7 +105,7 @@ export default function GalleryAdmin() {
                             <p className="mt-2 text-white-50">Bulk upload and manage your gallery assets.</p>
                         </div>
                         <div className="d-flex gap-3">
-                            <Link href="/admin" className="btn--base px-4 py-2" style={{ background: '#333' }}>Console</Link>
+                            <Link href="/admin" className="btn--base px-4 py-2" style={{ background: '#333' }}>Dashboard</Link>
                             <label className={`btn--base px-4 py-2 ${uploading ? 'opacity-50' : ''}`} style={{ cursor: uploading ? 'not-allowed' : 'pointer' }}>
                                 {uploading ? 'Processing...' : 'Bulk Upload +'}
                                 <input type="file" multiple className="d-none" onChange={handleBulkUpload} disabled={uploading} accept="image/*" />

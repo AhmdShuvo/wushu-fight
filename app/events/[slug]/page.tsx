@@ -31,7 +31,7 @@ const eventContent = {
                 </table>
                 <style jsx>{`
                     .custom-table { border-radius: 10px; overflow: hidden; border: none; }
-                    .custom-table thead th { background-color: #dc3545; color: white; border: none; text-transform: uppercase; }
+                    .custom-table thead th { background-color: #3ee80f; color: black; border: none; text-transform: uppercase; }
                     .custom-table tbody td { vertical-align: middle; color: #ccc; }
                 `}</style>
             </div>
@@ -46,12 +46,12 @@ const eventContent = {
                 {[1, 2, 3].map((item) => (
                     <div className="col-lg-4 col-md-6 mb-30" key={item}>
                         <div className="event-card p-4 border rounded bg-dark shadow-sm h-100">
-                            <span className="badge bg-danger mb-2">National</span>
+                            <span className="badge bg--secondary mb-2" style={{ color: '#000' }}>National</span>
                             <h4 className="title text-white mb-3" style={{ fontSize: '18px' }}>National Junior Wushu Championship {2024 + item}</h4>
                             <p className="text-muted" style={{ fontSize: '14px' }}>The biggest national event for young Wushu athletes from across the country.</p>
                             <div className="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary">
-                                <span className="text-white"><i className="fas fa-calendar-alt text-danger me-2"></i> Oct 2024</span>
-                                <span className="text-white"><i className="fas fa-map-marker-alt text-danger me-2"></i> Dhaka</span>
+                                <span className="text-white"><i className="fas fa-calendar-alt me-2" style={{ color: '#3ee80f' }}></i> Oct 2024</span>
+                                <span className="text-white"><i className="fas fa-map-marker-alt me-2" style={{ color: '#3ee80f' }}></i> Dhaka</span>
                             </div>
                         </div>
                     </div>
@@ -67,13 +67,13 @@ const eventContent = {
             <div className="row mt-4">
                 {[1, 2].map((item) => (
                     <div className="col-lg-6 col-md-6 mb-30" key={item}>
-                        <div className="event-card p-4 border rounded bg-dark shadow-sm h-100 border-start border-danger border-5">
+                        <div className="event-card p-4 border rounded bg-dark shadow-sm h-100 border-start border-5" style={{ borderColor: '#3ee80f' }}>
                             <span className="badge bg-primary mb-2">International</span>
                             <h4 className="title text-white mb-3">15th World Wushu Championships</h4>
                             <p className="text-muted">Participating in the global arena to showcase Bangladeshi talent in Wushu.</p>
                             <ul className="list-unstyled text-white mt-3">
-                                <li className="mb-2"><i className="fas fa-check-circle text-danger me-2"></i> Organized by IWUF</li>
-                                <li className="mb-2"><i className="fas fa-check-circle text-danger me-2"></i> Qualified Athletes only</li>
+                                <li className="mb-2"><i className="fas fa-check-circle me-2" style={{ color: '#3ee80f' }}></i> Organized by IWUF</li>
+                                <li className="mb-2"><i className="fas fa-check-circle me-2" style={{ color: '#3ee80f' }}></i> Qualified Athletes only</li>
                             </ul>
                         </div>
                     </div>
@@ -89,8 +89,8 @@ const eventContent = {
             <div className="mt-4">
                 <div className="activity-list">
                     <div className="activity-item p-4 mb-3 border rounded bg-dark d-flex align-items-center shadow-sm">
-                        <div className="icon-box me-4" style={{ backgroundColor: '#dc3545', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <i className="fas fa-users text-white fa-lg" style={{ margin: '0 auto' }}></i>
+                        <div className="icon-box me-4" style={{ backgroundColor: '#3ee80f', width: '60px', height: '60px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <i className="fas fa-users text-dark fa-lg" style={{ margin: '0 auto' }}></i>
                         </div>
                         <div>
                             <h5 className="text-white mb-1">Community Outreach Program</h5>
@@ -167,7 +167,7 @@ export default function EventDetailPage() {
                         transform: scale(1.02);
                         z-index: 10;
                         box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-                        border-color: #dc3545;
+                        border-color: #3ee80f;
                     }
                     .bento-item.large { grid-column: span 8; grid-row: span 2; }
                     .bento-item.medium { grid-column: span 6; grid-row: span 1; }
@@ -191,7 +191,8 @@ export default function EventDetailPage() {
                         color: white;
                     }
                     .bento-badge {
-                        background: #dc3545;
+                        background: #3ee80f;
+                        color: #000;
                         padding: 5px 15px;
                         border-radius: 20px;
                         font-size: 11px;
@@ -227,7 +228,7 @@ export default function EventDetailPage() {
                         <img src={event.image} alt={event.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         <div className="attachment-icons">
                             {event.videoUrl && <div className="attachment-icon" title="Video Available"><i className="fas fa-play"></i></div>}
-                            {event.pdfUrl && <div className="attachment-icon" title="PDF Available"><i className="fas fa-file-pdf text-danger"></i></div>}
+                            {event.pdfUrl && <div className="attachment-icon" title="PDF Available"><i className="fas fa-file-pdf" style={{ color: '#3ee80f' }}></i></div>}
                         </div>
                         <div className="bento-content">
                             <span className="bento-badge">{event.type}</span>
@@ -271,7 +272,7 @@ export default function EventDetailPage() {
                         transform: translateY(-10px) scale(1.01);
                         z-index: 10;
                         box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-                        border-color: #dc3545;
+                        border-color: #3ee80f;
                     }
                     .bento-item:hover .bento-overlay {
                         background: rgba(0,0,0,0.4);
@@ -315,7 +316,8 @@ export default function EventDetailPage() {
                         backdrop-filter: blur(8px);
                     }
                     .bento-badge {
-                        background: linear-gradient(90deg, #dc3545, #ff4d4d);
+                        background: linear-gradient(90deg, #3ee80f, #7af260);
+                        color: #000;
                         padding: 6px 18px;
                         border-radius: 30px;
                         font-size: 10px;
@@ -324,7 +326,7 @@ export default function EventDetailPage() {
                         text-transform: uppercase;
                         letter-spacing: 1.5px;
                         font-weight: 800;
-                        box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+                        box-shadow: 0 4px 15px rgba(62, 232, 15, 0.4);
                     }
                     .title-h { font-size: 24px; font-weight: 800; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
                     .attachment-icons {
@@ -350,14 +352,15 @@ export default function EventDetailPage() {
                         transition: all 0.3s;
                     }
                     .attachment-icon:hover {
-                        background: #dc3545;
+                        background: #3ee80f;
+                        color: #000;
                         transform: scale(1.1);
                     }
                 `}</style>
                 <div className="container">
                     {(slug === 'national-sports' || slug === 'international-sports') ? (
                          loading ? (
-                            <div className="text-center py-5"><div className="spinner-border text-danger"></div></div>
+                            <div className="text-center py-5"><div className="spinner-border" style={{ color: '#3ee80f' }}></div></div>
                         ) : dynamicEvents.length === 0 ? (
                             <div className="text-center py-5 text-white-50">No events found in this category.</div>
                         ) : (
@@ -376,9 +379,9 @@ export default function EventDetailPage() {
                                             <span className="bento-badge">{event.type}</span>
                                             <h3 className="title-h mb-2">{event.title}</h3>
                                             <p className="small text-white-70 mb-4" style={{ letterSpacing: '0.5px' }}>
-                                                <i className="fas fa-map-marker-alt text-danger me-2"></i> {event.location} 
+                                                <i className="fas fa-map-marker-alt me-2" style={{ color: '#3ee80f' }}></i> {event.location} 
                                                 <span className="mx-2">|</span> 
-                                                <i className="fas fa-calendar-alt text-danger me-2"></i> {event.date}
+                                                <i className="fas fa-calendar-alt me-2" style={{ color: '#3ee80f' }}></i> {event.date}
                                             </p>
                                             <Link href={`/events/details/${event._id}`} className="btn--base btn-sm px-4">
                                                 EXPLORE EVENT <i className="fas fa-chevron-right ml-2" style={{ fontSize: '10px' }}></i>

@@ -12,9 +12,9 @@ export default function AdminDashboard() {
         { name: 'Home Game Board', href: '/admin/home-grid', icon: 'fa-th-large', category: 'HOME PAGE' },
         { name: 'Yearly Calendar', href: '/admin/calendar', icon: 'fa-calendar-alt', category: 'HOME PAGE' },
         { name: 'Tournament Events', href: '/admin/tournament-events', icon: 'fa-trophy', category: 'HOME PAGE' },
-        
+
         { name: 'Gallery Management', href: '/admin/gallery', icon: 'fa-photo-video', category: 'ASSETS' },
-        
+
         { name: 'Contact & Socials', href: '/admin/contact', icon: 'fa-address-card', category: 'GLOBAL' },
         { name: 'Static Pages/Story', href: '/admin/pages', icon: 'fa-file-alt', category: 'GLOBAL' },
         { name: 'Admin/Team Members', href: '/admin/members', icon: 'fa-user-tie', category: 'GLOBAL' },
@@ -30,7 +30,7 @@ export default function AdminDashboard() {
         <div className="p-5" style={{ background: '#f8f9fa', color: '#212529', minHeight: '100vh' }}>
             <div className="container">
                 <div className="d-flex justify-content-between align-items-center mb-5">
-                    <h1 className="text-dark m-0">Wushu Console</h1>
+                    <h1 className="text-dark m-0">Wushu Dashboard</h1>
                     <div className="d-flex align-items-center">
                         <span className="me-3 text-muted">Signed in as <strong>{session?.user?.name}</strong> ({session?.user?.role})</span>
                         <button onClick={() => signOut()} className="btn btn-dark">Sign Out</button>
@@ -50,7 +50,7 @@ export default function AdminDashboard() {
                                     <div key={section.name} className="col-md-3">
                                         <Link href={section.href} className="text-decoration-none">
                                             <div className="p-4 text-center border border-light shadow-sm rounded hover-bg-light transition bg-white h-100">
-                                                <i className={`fas ${section.icon} fa-2x mb-3 text-danger`}></i>
+                                                <i className={`fas ${section.icon} fa-2x mb-3`} style={{ color: '#3ee80f' }}></i>
                                                 <h3 className="text-dark h6 m-0 font-weight-bold">{section.name}</h3>
                                             </div>
                                         </Link>
@@ -63,8 +63,8 @@ export default function AdminDashboard() {
 
 
                 {session?.user?.role === 'super_admin' && (
-                    <div className="mt-5 p-5 border border-danger rounded bg-white shadow-sm">
-                        <h2 className="text-danger">System Tools</h2>
+                    <div className="mt-5 p-5 border rounded bg-white shadow-sm" style={{ borderColor: '#3ee80f' }}>
+                        <h2 style={{ color: '#3ee80f' }}>System Tools</h2>
                         <p className="text-muted">Use the button below to reset all database content to the original template defaults.</p>
                         <button
                             onClick={async () => {
@@ -80,7 +80,8 @@ export default function AdminDashboard() {
                                     }
                                 }
                             }}
-                            className="btn btn-outline-danger btn-lg"
+                            className="btn btn-outline-success btn-lg"
+                            style={{ borderColor: '#3ee80f', color: '#3ee80f' }}
                         >
                             Reset/Seed Entire Database
                         </button>
@@ -91,7 +92,7 @@ export default function AdminDashboard() {
             <style jsx>{`
                 .hover-bg-light:hover {
                     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-                    border-color: #dc3545 !important;
+                    border-color: #3ee80f !important;
                 }
                 .transition {
                     transition: all 0.3s ease;

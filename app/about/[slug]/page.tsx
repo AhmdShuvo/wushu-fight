@@ -25,13 +25,17 @@ const aboutData: Record<string, any> = {
     'mission': {
         title: 'Our Mission',
         subtitle: 'What Drives Us',
-        layout: 'cards-overlay',
-        content: "Our mission is to develop Wushu athletes of international caliber, promote a healthy and disciplined lifestyle, and integrate the cultural philosophy of martial arts into modern sports development. We aim to make Wushu accessible to every interested individual in Bangladesh.",
-        cards: [
-            { icon: 'fa-fist-raised', title: 'Athletic Excellence', text: 'To provide world-class training facilities and coaching to produce champion athletes.' },
-            { icon: 'fa-heartbeat', title: 'Health & Well-being', text: 'To promote physical fitness and mental resilience through the regular practice of Wushu.' },
-            { icon: 'fa-balance-scale', title: 'Fair Play & Discipline', text: 'To instill the core values of martial arts: respect, honor, and continuous self-improvement.' }
-        ]
+        layout: 'content-image',
+        content: [
+            "Our mission is to develop Wushu athletes of international caliber, promote a healthy and disciplined lifestyle, and integrate the cultural philosophy of martial arts into modern sports development.",
+            "We aim to make Wushu accessible to every interested individual in Bangladesh, ensuring that the legacy of these martial arts is preserved and modernized for the next generation of champions."
+        ],
+        highlights: [
+            { icon: 'fa-fist-raised', title: 'Athletic Excellence', text: 'Produce world-class champions' },
+            { icon: 'fa-heartbeat', title: 'Health & Well-being', text: 'Promote physical and mental fitness' },
+            { icon: 'fa-balance-scale', title: 'Fair Play', text: 'Instill core martial arts values' }
+        ],
+        image: '/assets/images/bg/bg-22.png'
     },
     'vision': {
         title: 'Our Vision',
@@ -174,27 +178,27 @@ export default function AboutPage() {
                                 </div>
 
                                 {data.highlights && (
-                                    <div className="row mt-5">
-                                        {data.highlights.map((item: any, i: number) => (
-                                            <div className="col-sm-6 mb-4" key={i}>
-                                                <div className="d-flex align-items-center">
-                                                    <div className="icon-box mr-3" style={{ width: '50px', height: '50px', backgroundColor: '#dc3545', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>
-                                                        <i className={`fas ${item.icon}`}></i>
-                                                    </div>
-                                                    <div>
-                                                        <h5 className="mb-1 text-dark" style={{ fontSize: '16px', fontWeight: 'bold' }}>{item.title}</h5>
-                                                        <p className="mb-0 text-muted" style={{ fontSize: '13px' }}>{item.text}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
+                                     <div className="row mt-5">
+                                         {data.highlights.map((item: any, i: number) => (
+                                             <div className="col-sm-6 mb-4" key={i}>
+                                                 <div className="d-flex align-items-center">
+                                                     <div className="icon-box mr-3" style={{ width: '50px', height: '50px', backgroundColor: '#3ee80f', color: '#000', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', fontWeight: 'bold' }}>
+                                                         <i className={`fas ${item.icon}`}></i>
+                                                     </div>
+                                                     <div>
+                                                         <h5 className="mb-1 text-dark" style={{ fontSize: '16px', fontWeight: 'bold' }}>{item.title}</h5>
+                                                         <p className="mb-0 text-muted" style={{ fontSize: '13px' }}>{item.text}</p>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         ))}
+                                     </div>
+                                 )}
                             </div>
                             <div className="col-lg-6" data-aos="fade-left" data-aos-duration="1200">
                                 <div className="about-image position-relative" style={{ borderRadius: '15px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
                                     <img src={data.image} alt={data.title} className="w-100 img-fluid" style={{ minHeight: '500px', objectFit: 'cover' }} />
-                                    <div className="position-absolute" style={{ top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(45deg, rgba(220,53,69,0.2) 0%, rgba(0,0,0,0) 100%)' }}></div>
+                                    <div className="position-absolute" style={{ top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(45deg, rgba(62,232,15,0.2) 0%, rgba(0,0,0,0) 100%)' }}></div>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +224,7 @@ export default function AboutPage() {
                                         <style>{`
                                             .mission-card-hover:hover { transform: translateY(-10px) !important; }
                                         `}</style>
-                                        <i className={`fas ${card.icon} fa-4x mb-4`} style={{ color: '#dc3545' }}></i>
+                                        <i className={`fas ${card.icon} fa-4x mb-4`} style={{ color: '#3ee80f' }}></i>
                                         <h4 className="text-white mb-3">{card.title}</h4>
                                         <p className="text-white-50 mb-0">{card.text}</p>
                                     </div>
@@ -247,12 +251,12 @@ export default function AboutPage() {
                             {/* Top Tier: Principal Leader */}
                             {teamToDisplay?.length > 0 && (
                                 <div className="leadership-tier mb-60 text-center">
-                                    <div className="leadership-card mx-auto shadow-lg bg-white p-5 text-center border-top border-5 border-danger position-relative overflow-hidden" style={{ maxWidth: '600px', borderRadius: '20px' }}>
+                                    <div className="leadership-card mx-auto shadow-lg bg-white p-5 text-center border-top border-5 position-relative overflow-hidden" style={{ maxWidth: '600px', borderRadius: '20px', borderTopColor: '#3ee80f' }}>
                                         <div className="member-thumb mb-4 mx-auto" style={{ width: '150px', height: '150px', borderRadius: '50%', backgroundColor: '#eee', overflow: 'hidden', border: '5px solid #f8f9fa' }}>
                                             <img src={teamToDisplay[0].image || "/assets/images/trainer/trainer-1.png"} alt={teamToDisplay[0].name} className="w-100 h-100" style={{ objectFit: 'cover' }} />
                                         </div>
                                         <h3 className="text-dark mb-1 h4" style={{ fontWeight: '800', letterSpacing: '1px' }}>{teamToDisplay[0].name}</h3>
-                                        <span className="text-danger d-block mb-4 font-weight-bold text-uppercase" style={{ fontSize: '14px', letterSpacing: '2px' }}>{teamToDisplay[0].role}</span>
+                                        <span className="text-acc-green d-block mb-4 font-weight-bold text-uppercase" style={{ fontSize: '14px', letterSpacing: '2px' }}>{teamToDisplay[0].role}</span>
                                         <p className="text-muted mb-0" style={{ fontSize: '16px', lineHeight: '1.6' }}>{teamToDisplay[0].desc}</p>
                                     </div>
                                 </div>
@@ -270,7 +274,7 @@ export default function AboutPage() {
                                                     </div>
                                                     <div>
                                                         <h4 className="text-dark mb-0 h6" style={{ fontWeight: 'bold' }}>{member.name}</h4>
-                                                        <span className="text-danger d-block small font-weight-bold">{member.role}</span>
+                                                        <span className="text-acc-green d-block small font-weight-bold">{member.role}</span>
                                                     </div>
                                                 </div>
                                                 <p className="text-muted mb-0 mt-auto" style={{ fontSize: '13px', lineHeight: '1.5' }}>{member.desc}</p>
@@ -296,9 +300,10 @@ export default function AboutPage() {
                         .member-bento-item:hover {
                             transform: translateY(-8px);
                             box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
-                            border-left-color: #dc3545;
+                            border-left-color: #3ee80f;
                         }
                         .large-bt { grid-column: span 1; }
+                        .text-acc-green { color: #3ee80f !important; }
                         @media (max-width: 991px) {
                             .member-bento-grid {
                                 grid-template-columns: 1fr;
@@ -321,9 +326,9 @@ export default function AboutPage() {
                         <div className="row">
                             {data.items.map((item: any, i: number) => (
                                 <div className="col-lg-6 mb-30" key={i} data-aos="fade-up" data-aos-duration="1000">
-                                    <div className="d-flex bg-dark p-4 h-100" style={{ borderRadius: '10px', borderLeft: '4px solid #dc3545' }}>
+                                    <div className="d-flex bg-dark p-4 h-100" style={{ borderRadius: '10px', borderLeft: '4px solid #3ee80f' }}>
                                         <div className="mr-4 mt-2">
-                                            <i className="fas fa-check-circle" style={{ color: '#dc3545', fontSize: '24px' }}></i>
+                                            <i className="fas fa-check-circle" style={{ color: '#3ee80f', fontSize: '24px' }}></i>
                                         </div>
                                         <div>
                                             <h4 className="text-white mb-2">{item.title}</h4>

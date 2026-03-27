@@ -130,7 +130,7 @@ export default function MembersAdmin() {
                     <div className="row g-4">
                         {members.map((member) => (
                             <div key={member._id} className="col-xl-4 col-lg-6">
-                                <div className="card h-100 shadow border-0 overflow-hidden" style={{ background: '#111', borderRadius: '15px', border: member.category === 'founding' ? '1px solid #dc3545' : '1px solid #333' }}>
+                                <div className="card h-100 shadow border-0 overflow-hidden" style={{ background: '#111', borderRadius: '15px', border: member.category === 'founding' ? '1px solid #3ee80f' : '1px solid #333' }}>
                                     <div className="p-4">
                                         <div className="d-flex align-items-center mb-4">
                                             <div className="member-thumb mr-4" style={{ width: '80px', height: '80px', borderRadius: '50%', backgroundColor: '#222', overflow: 'hidden', flexShrink: 0, border: '2px solid #333' }}>
@@ -138,16 +138,16 @@ export default function MembersAdmin() {
                                             </div>
                                             <div className="overflow-hidden">
                                                 <h5 className="text-white mb-1 text-truncate">{member.name}</h5>
-                                                <span className={`badge ${member.category === 'founding' ? 'bg-danger' : 'bg-primary'} mb-0`} style={{ fontSize: '10px' }}>{member.category.toUpperCase()}</span>
+                                                <span className={`badge ${member.category === 'founding' ? 'bg--secondary' : 'bg-primary'} mb-0`} style={{ fontSize: '10px', color: member.category === 'founding' ? '#000' : '#fff' }}>{member.category.toUpperCase()}</span>
                                             </div>
                                         </div>
-                                        <p className="text-danger font-weight-bold mb-2 small">{member.role}</p>
+                                        <p className="font-weight-bold mb-2 small" style={{ color: '#3ee80f' }}>{member.role}</p>
                                         <p className="text-white-50 small mb-4 line-clamp-2" style={{ height: '40px', overflow: 'hidden' }}>{member.desc}</p>
                                         <div className="d-flex gap-3 pt-3 border-top border-secondary">
                                             <button onClick={() => handleEdit(member)} className="btn btn-sm btn-outline-light w-100">
                                                 <i className="fas fa-edit mr-2"></i> Edit
                                             </button>
-                                            <button onClick={() => handleDelete(member._id)} className="btn btn-sm btn-outline-danger w-100">
+                                            <button onClick={() => handleDelete(member._id)} className="btn btn-sm btn-outline-success w-100" style={{ borderColor: '#3ee80f', color: '#3ee80f' }}>
                                                 <i className="fas fa-trash mr-2"></i> Delete
                                             </button>
                                         </div>

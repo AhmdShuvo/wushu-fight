@@ -29,9 +29,7 @@ export default function Footer() {
 
     const address = contact?.address ? { ...defaults, ...contact.address } : defaults;
 
-    // Fallback social links if no data
     const socials = contact?.socials || {
-
         facebook: '#',
         instagram: '#',
         twitter: '#',
@@ -40,78 +38,121 @@ export default function Footer() {
     };
 
     return (
-        <footer id="contact" className="footer-section footer-section-two pt-80 pb-30" style={{ backgroundColor: '#fff', color: '#333', borderTop: '1px solid #eee' }}>
-            <div className="container">
+        <footer id="contact" className="footer-section footer-section-two pt-80" style={{ position: 'relative', backgroundColor: '#0a0a0a', color: '#fff', overflow: 'hidden' }}>
+            <div className="footer-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, opacity: 0.1 }}>
+                <img src="/assets/images/bg/bg-4.png" alt="bg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+            
+            <div className="container" style={{ position: 'relative', zIndex: 2 }}>
                 <div className="row">
-                    {/* Left Side - Socials & Quick Links */}
-                    <div className="col-lg-6 col-md-12 mb-30 d-flex flex-column justify-content-center">
-                        <div className="footer-widget mb-4">
-                            <ul className="footer-social" style={{ display: 'flex', gap: '15px', padding: 0, margin: '0 0 20px 0', listStyle: 'none' }}>
-                                <li><a href={socials.facebook} target="_blank" style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#3b5998', color: '#fff' }}><i className="fab fa-facebook-f"></i></a></li>
-                                <li><a href={socials.instagram} target="_blank" style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', color: '#fff' }}><i className="fab fa-instagram"></i></a></li>
-                                <li><a href={socials.twitter} target="_blank" style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#1da1f2', color: '#fff' }}><i className="fab fa-twitter"></i></a></li>
-                                <li><a href={socials.youtube} target="_blank" style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#ff0000', color: '#fff' }}><i className="fab fa-youtube"></i></a></li>
-                                <li><a href={socials.whatsapp} target="_blank" style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center', width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#25d366', color: '#fff' }}><i className="fab fa-whatsapp"></i></a></li>
+                    {/* Column 1: About & Socials */}
+                    <div className="col-xl-5 col-lg-5 col-md-6">
+                        <div className="footer-widget">
+                            <div className="footer-logo mb-4">
+                                <Link href="/" className="site-logo site-title">
+                                    <img src="/assets/images/wushu_logo.png" alt="site-logo" style={{ maxWidth: '100px' }} />
+                                </Link>
+                            </div>
+                            <p className="text-white-50 mb-4" style={{ lineHeight: '1.8', textAlign: 'justify' }}>
+                                Bangladesh Wushu Federation (BWUF) is the sole authority for Wushu in Bangladesh, 
+                                dedicated to promoting martial arts excellence and discipline since 1986. 
+                                We are affiliated with SAWUF, WFA, and IWUF.
+                            </p>
+                            <ul className="footer-social d-flex gap-3 p-0 m-0" style={{ listStyle: 'none' }}>
+                                <li><a href={socials.facebook} target="_blank" className="social-link"><i className="fab fa-facebook-f"></i></a></li>
+                                <li><a href={socials.instagram} target="_blank" className="social-link"><i className="fab fa-instagram"></i></a></li>
+                                <li><a href={socials.twitter} target="_blank" className="social-link"><i className="fab fa-twitter"></i></a></li>
+                                <li><a href={socials.youtube} target="_blank" className="social-link"><i className="fab fa-youtube"></i></a></li>
                             </ul>
                         </div>
-
-                        <div className="footer-widget d-flex align-items-center">
-                            <h5 style={{ margin: '0 20px 0 0', fontWeight: 'bold' }}>Quick Links:</h5>
-                            <div className="quick-links-logos d-flex flex-wrap" style={{ gap: '15px', alignItems: 'center' }}>
-                                {contact?.quickLinks?.map((link: any, idx: number) => (
-                                    <Link key={idx} href={link.url} style={{ display: 'inline-block' }} title="Quick Link" target="_blank">
-                                        <img src={link.image} alt="Quick Link" style={{ width: '40px', height: 'auto', objectFit: 'contain' }} />
-                                    </Link>
-                                ))}
-                                {!contact?.quickLinks?.length && (
-                                    <>
-                                        <Link href="#" style={{ display: 'inline-block' }} title="Quick Link">
-                                            <img src="/assets/images/quicklinks/Picture4.png" alt="Quick Link" style={{ width: '40px', height: 'auto', objectFit: 'contain' }} />
-                                        </Link>
-                                        <Link href="#" style={{ display: 'inline-block' }} title="Quick Link">
-                                            <img src="/assets/images/quicklinks/Picture5.png" alt="Quick Link" style={{ width: '40px', height: 'auto', objectFit: 'contain' }} />
-                                        </Link>
-                                        <Link href="#" style={{ display: 'inline-block' }} title="Quick Link">
-                                            <img src="/assets/images/quicklinks/Picture6.png" alt="Quick Link" style={{ width: '40px', height: 'auto', objectFit: 'contain' }} />
-                                        </Link>
-                                        <Link href="#" style={{ display: 'inline-block' }} title="Quick Link">
-                                            <img src="/assets/images/quicklinks/Picture7.png" alt="Quick Link" style={{ width: '40px', height: 'auto', objectFit: 'contain' }} />
-                                        </Link>
-                                    </>
-                                )}
-                            </div>
-                        </div>
-
                     </div>
 
-                    {/* Right Side - Contact US */}
-                    <div className="col-lg-6 col-md-12 mb-30" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <div className="footer-widget text-lg-right">
-                            <h5 className="title" style={{ fontWeight: 'bold', fontStyle: 'italic', marginBottom: '10px', color: '#000' }}>CONTACT US</h5>
-                            <div className="contact-details" style={{ lineHeight: '1.4', color: '#000', fontSize: '16px' }}>
-                                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                                    {address.room && <li>{address.room}, {address.floor}</li>}
-                                    {address.building && <li>{address.building}</li>}
-                                    {address.street && <li>{address.street}</li>}
-                                    {address.area && <li>{address.area}, {address.city} - {address.zip}</li>}
-                                    {address.country && <li>{address.country}</li>}
-                                </ul>
-                                <p style={{ margin: '10px 0 0 0', color: '#000' }}>Email : {contact?.email || 'wushubd@gmail.com'}</p>
-                                <p style={{ margin: 0, color: '#000' }}>Telephone : {contact?.phone?.telephone || '+88 02 9565503'}</p>
-                            </div>
-
-
+                    {/* Column 2: Contact Details */}
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                        <div className="footer-widget px-xl-4">
+                            <h4 className="title text-white mb-4" style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '2px solid #3ee80f', display: 'inline-block', paddingBottom: '5px' }}>Contact Us</h4>
+                            <ul className="footer-list p-0 m-0 text-white-50" style={{ listStyle: 'none', lineHeight: '1.8' }}>
+                                <li className="mb-3 d-flex gap-3">
+                                    <i className="fas fa-map-marker-alt text--acc mt-1"></i>
+                                    <span>
+                                        {address.room}, {address.floor}<br />
+                                        {address.building}<br />
+                                        {address.street}, {address.area}<br />
+                                        {address.city} - {address.zip}, {address.country}
+                                    </span>
+                                </li>
+                                <li className="mb-2 d-flex gap-3 align-items-center">
+                                    <i className="fas fa-envelope text--acc"></i>
+                                    <span>{contact?.email || 'wushubd@gmail.com'}</span>
+                                </li>
+                                <li className="d-flex gap-3 align-items-center">
+                                    <i className="fas fa-phone-alt text--acc"></i>
+                                    <span>{contact?.phone?.telephone || '+88 02 9565503'}</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <div className="footer-bottom mt-5 pt-4" style={{ borderTop: '1px solid rgba(0,0,0,0.05)', textAlign: 'center' }}>
-                    <p style={{ margin: 0, fontSize: '14px', color: '#777' }}>
-                        Copyright &copy; {new Date().getFullYear()} <span style={{ color: '#dc3545', fontWeight: 'bold' }}>Bangladesh Wushu Federation</span>. All Rights Reserved.
-                    </p>
+                    {/* Column 3: Quick Links */}
+                    <div className="col-xl-3 col-lg-3 col-md-6">
+                        <div className="footer-widget">
+                            <h4 className="title text-white mb-4" style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '2px solid #3ee80f', display: 'inline-block', paddingBottom: '5px' }}>Quick Links</h4>
+                            <div className="footer-gallery-area">
+                                <div className="footer-gallery-wrapper d-flex flex-wrap gap-2">
+                                    {contact?.quickLinks?.map((link: any, idx: number) => (
+                                        <div className="footer-gallery-thumb" key={idx} style={{ width: '60px', height: '60px', overflow: 'hidden', border: '1px solid #333' }}>
+                                            <Link href={link.url} target="_blank" className="w-100 h-100 d-block">
+                                                <img src={link.image} alt="link" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '5px', backgroundColor: '#fff' }} />
+                                            </Link>
+                                        </div>
+                                    ))}
+                                    {!contact?.quickLinks?.length && [4, 5, 6, 7].map(n => (
+                                        <div className="footer-gallery-thumb" key={n} style={{ width: '60px', height: '60px', overflow: 'hidden', border: '1px solid #333' }}>
+                                            <Link href="#" className="w-100 h-100 d-block">
+                                                <img src={`/assets/images/quicklinks/Picture${n}.png`} alt="link" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '5px', backgroundColor: '#fff' }} />
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </footer>
 
+            <div className="copyright-wrapper py-2" style={{ marginTop: '0', borderTop: '1px solid rgba(255,255,255,0.05)', position: 'relative', zIndex: 2 }}>
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-xl-12 text-center">
+                            <div className="copyright-area">
+                                <p className="text-white-50 small m-0">
+                                    Copyright &copy; {new Date().getFullYear()} <span className="text--acc font-weight-bold">Bangladesh Wushu Federation</span>. All Rights Reserved.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>{`
+                .social-link {
+                    width: 40px;
+                    height: 40px;
+                    background: #1a1a1a;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 0;
+                    transition: all 0.3s ease;
+                }
+                .social-link:hover {
+                    background: #3ee80f;
+                    color: #000;
+                    transform: translateY(-3px);
+                }
+                .text--acc { color: #3ee80f !important; }
+            `}</style>
+        </footer>
     );
 }

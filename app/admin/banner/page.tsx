@@ -239,7 +239,7 @@ export default function BannerAdmin() {
                             </div>
                         </div>
 
-                        {/* Live Preview Console */}
+                        {/* Live Preview Dashboard */}
                         <div className="col-xl-6 col-lg-5 p-0" style={{ position: 'relative' }}>
                             <div className="banner-section banner-section-two" style={{ height: '600px', borderRadius: '10px', overflow: 'hidden', padding: 0, position: 'relative' }}>
                                 <div className="banner-bg bg-overlay-black bg_img" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
@@ -306,7 +306,7 @@ export default function BannerAdmin() {
                                             <button onClick={() => handleEdit(banner)} className="btn--base active" style={{ padding: '10px 20px' }}>
                                                 Edit <i className="fas fa-edit ml-1"></i>
                                             </button>
-                                            <button onClick={() => handleDelete(banner._id)} className="btn--base" style={{ padding: '10px 20px', backgroundColor: '#dc3545', color: 'white', borderColor: '#dc3545' }}>
+                                            <button onClick={() => handleDelete(banner._id)} className="btn--base" style={{ padding: '10px 20px', backgroundColor: '#3ee80f', color: 'black', borderColor: '#3ee80f' }}>
                                                 Delete <i className="fas fa-trash ml-1"></i>
                                             </button>
                                         </div>
@@ -322,7 +322,7 @@ export default function BannerAdmin() {
                     {/* Ticker Management Section */}
                     <div className="row pb-120">
                         <div className="col-12 mt-5">
-                            <div className="account-widget-form-area p-5 rounded" style={{ backgroundColor: '#111', border: '1px solid #dc3545' }}>
+                            <div className="account-widget-form-area p-5 rounded" style={{ backgroundColor: '#111', border: '1px solid #3ee80f' }}>
                                 <div className="section-header">
                                     <h2 className="section-title">Dynamic <span>Ticker Notices</span></h2>
                                     <p className="mt-2 text-white-50">Manage the scrolling marquee messages in the site header.</p>
@@ -330,27 +330,27 @@ export default function BannerAdmin() {
                                 <div className="row mt-4">
                                     <div className="col-xl-6 form-group">
                                         <label className="text-white mb-2 font-weight-bold">Primary Notice (Updates)</label>
-                                        <input 
-                                            type="text" 
-                                            className="form--control" 
-                                            value={tickerData.updatesText} 
-                                            onChange={(e) => setTickerData({ ...tickerData, updatesText: e.target.value })} 
+                                        <input
+                                            type="text"
+                                            className="form--control"
+                                            value={tickerData.updatesText}
+                                            onChange={(e) => setTickerData({ ...tickerData, updatesText: e.target.value })}
                                             placeholder="Updates: Important Notices..."
                                         />
                                     </div>
                                     <div className="col-xl-6 form-group">
                                         <label className="text-white mb-2 font-weight-bold">Secondary Notice (Resources)</label>
-                                        <input 
-                                            type="text" 
-                                            className="form--control" 
-                                            value={tickerData.resourcesText} 
-                                            onChange={(e) => setTickerData({ ...tickerData, resourcesText: e.target.value })} 
+                                        <input
+                                            type="text"
+                                            className="form--control"
+                                            value={tickerData.resourcesText}
+                                            onChange={(e) => setTickerData({ ...tickerData, resourcesText: e.target.value })}
                                             placeholder="Explore our Resources section..."
                                         />
                                     </div>
                                     <div className="col-12 mt-3">
-                                        <button 
-                                            className="btn--base" 
+                                        <button
+                                            className="btn--base"
                                             onClick={async () => {
                                                 const loadToast = toast.loading('Updating Ticker...');
                                                 const res = await fetch('/api/ticker', {

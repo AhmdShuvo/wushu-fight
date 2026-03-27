@@ -67,25 +67,25 @@ export default function TestimonialModeration() {
                     <div className="row g-4">
                         {testimonials.map((t) => (
                             <div className="col-lg-6" key={t._id}>
-                                <div className="p-4 rounded shadow-sm h-100" style={{ backgroundColor: '#111', border: `2px solid ${t.isApproved ? '#28a745' : '#dc3545'}` }}>
+                                <div className="p-4 rounded shadow-sm h-100" style={{ backgroundColor: '#111', border: `2px solid ${t.isApproved ? '#3ee80f' : 'rgba(255,255,255,0.1)'}` }}>
                                     <div className="d-flex align-items-center mb-3">
                                         <img src={t.image || '/assets/images/client/client-1.png'} alt="user" className="rounded-circle mr-3" style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
                                         <div>
                                             <h5 className="text-white mb-0">{t.name}</h5>
-                                            <span className="text-danger small">{t.role}</span>
+                                            <span className="small" style={{ color: '#3ee80f' }}>{t.role}</span>
                                         </div>
                                         <div className="ml-auto">
-                                            <span className={`badge ${t.isApproved ? 'bg-success' : 'bg-danger'}`}>
+                                            <span className={`badge ${t.isApproved ? 'bg--secondary' : 'bg-dark'}`} style={{ color: t.isApproved ? '#000' : '#fff' }}>
                                                 {t.isApproved ? 'APPROVED' : 'PENDING'}
                                             </span>
                                         </div>
                                     </div>
                                     <p className="text-white-50 small italic mb-4">"{t.text}"</p>
                                     <div className="d-flex gap-3">
-                                        <button onClick={() => toggleApproval(t._id, t.isApproved)} className={`btn btn-sm ${t.isApproved ? 'btn-outline-warning' : 'btn-success'} w-100`}>
+                                        <button onClick={() => toggleApproval(t._id, t.isApproved)} className={`btn btn-sm ${t.isApproved ? 'btn-outline-warning' : 'btn--base active'} w-100`}>
                                             {t.isApproved ? <><i className="fas fa-times me-2"></i> Unapprove</> : <><i className="fas fa-check me-2"></i> Approve</>}
                                         </button>
-                                        <button onClick={() => handleDelete(t._id)} className="btn btn-sm btn-outline-danger px-4">
+                                        <button onClick={() => handleDelete(t._id)} className="btn btn-sm btn-outline-success px-4" style={{ borderColor: '#3ee80f', color: '#3ee80f' }}>
                                             <i className="fas fa-trash"></i>
                                         </button>
                                     </div>

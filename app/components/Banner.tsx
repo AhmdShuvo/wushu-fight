@@ -105,7 +105,7 @@ export default function Banner() {
                                         <div className="col-xl-12 col-lg-12 text-center px-4 py-3">
                                             <div className="banner-content" data-aos="fade-up" data-aos-duration="1200">
                                                 <div className="mb-3">
-                                                    <span className="sub-title" style={{ fontSize: '16px', letterSpacing: '4px', color: '#e80000', fontWeight: 'bold' }}>{banner.subTitle}</span>
+                                                    <span className="sub-title" style={{ fontSize: '16px', letterSpacing: '4px', color: '#3ee80f', fontWeight: 'bold' }}>{banner.subTitle}</span>
                                                 </div>
                                                 <h1 className="title text-white" style={{ fontSize: '56px', marginBottom: '15px', fontWeight: 900, textTransform: 'uppercase', lineHeight: '1.1' }}>{banner.title}</h1>
                                                 <h3 className="inner-title text-white-50" style={{ fontSize: '28px', marginBottom: '20px', fontWeight: 600 }}>{banner.innerTitle}</h3>

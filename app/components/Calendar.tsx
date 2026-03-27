@@ -25,7 +25,7 @@ export default function Calendar() {
         return (
             <div className="ptb-80 text-center">
                 <div className="container">
-                    <div className="spinner-border text-danger"></div>
+                    <div className="spinner-border" style={{ color: '#3ee80f' }}></div>
                     <p className="mt-3 text-white">Loading schedule...</p>
                 </div>
             </div>
@@ -38,15 +38,15 @@ export default function Calendar() {
 
     return (
         <section id="calendar" className="calendar-section ptb-120" style={{ 
-            background: 'linear-gradient(135deg, #1a0507 0%, #0d0d0d 100%)',
-            borderTop: '1px solid #3d0e12',
-            borderBottom: '1px solid #3d0e12' 
+            background: 'linear-gradient(135deg, #0a0a0a 0%, #151515 100%)',
+            borderTop: '1px solid rgba(255,255,255,0.05)',
+            borderBottom: '1px solid rgba(255,255,255,0.05)' 
         }}>
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-xl-6 col-lg-8 text-center">
                         <div className="section-header" data-aos="fade-up" data-aos-duration="1200">
-                            <h2 className="section-title"><span>YEARLY</span> <span style={{ color: '#ff4d4d' }}>CALENDAR</span></h2>
+                            <h2 className="section-title"><span>YEARLY</span> <span style={{ color: '#3ee80f' }}>CALENDAR</span></h2>
                             <p className="text-white-50">Stay updated with our annual schedule of events, training camps, and championships across Bangladesh.</p>
                         </div>
                     </div>
@@ -58,10 +58,10 @@ export default function Calendar() {
                             <table className="table table-bordered table-dark custom-table m-0">
                                 <thead>
                                     <tr>
-                                        <th style={{ backgroundColor: '#dc3545', color: '#fff', border: 'none', padding: '20px', fontWeight: 800 }}>MONTH</th>
-                                        <th style={{ backgroundColor: '#dc3545', color: '#fff', border: 'none', padding: '20px', fontWeight: 800 }}>EVENT NAME</th>
-                                        <th style={{ backgroundColor: '#dc3545', color: '#fff', border: 'none', padding: '20px', fontWeight: 800 }}>LOCATION</th>
-                                        <th style={{ backgroundColor: '#dc3545', color: '#fff', border: 'none', padding: '20px', fontWeight: 800 }}>DATE</th>
+                                        <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>MONTH</th>
+                                        <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>EVENT NAME</th>
+                                        <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>LOCATION</th>
+                                        <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>DATE</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,10 +70,10 @@ export default function Calendar() {
                                             <td style={{ padding: '15px 20px', color: '#eee', borderBottom: '1px solid rgba(255,255,255,0.1)', fontWeight: 'bold' }}>{item.month}</td>
                                             <td style={{ padding: '15px 20px', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.1)', fontWeight: 600 }}>{item.event}</td>
                                             <td style={{ padding: '15px 20px', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                                                <i className="fas fa-map-marker-alt text-danger me-2"></i> {item.location}
+                                                <i className="fas fa-map-marker-alt me-2" style={{ color: '#3ee80f' }}></i> {item.location}
                                             </td>
                                             <td style={{ padding: '15px 20px', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                                                <i className="fas fa-calendar-alt text-danger me-2"></i> {item.date}
+                                                <i className="fas fa-calendar-alt me-2" style={{ color: '#3ee80f' }}></i> {item.date}
                                             </td>
                                         </tr>
                                     ))}
@@ -83,10 +83,10 @@ export default function Calendar() {
                     </div>
                 </div>
             </div>
-            <style jsx>{`
+            <style>{`
                 .custom-table { border-radius: 12px; overflow: hidden; border: none; background-color: rgba(20, 20, 20, 0.4); }
                 .custom-table tbody tr { transition: all 0.3s; }
-                .custom-table tbody tr:hover { background-color: rgba(220, 53, 69, 0.1) !important; transform: scale(1.005); }
+                .custom-table tbody tr:hover { background-color: rgba(62, 232, 15, 0.05) !important; transform: scale(1.005); }
                 .custom-table tbody td { border-right: 1px solid rgba(255,255,255,0.05); border-left: none; }
                 .custom-table tbody td:last-child { border-right: none; }
                 @media (max-width: 767px) {

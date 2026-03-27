@@ -121,15 +121,15 @@ export default function Header() {
                                          .header-fixed {
                                              background: rgba(8, 8, 8, 0.98) !important;
                                              box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
-                                             border-bottom: 2px solid #dc3545;
+                                             border-bottom: 2px solid #3ee80f;
                                          }
                                          
                                          .header-fixed .navbar-toggler { color: #fff !important; border-color: rgba(255,255,255,0.2); }
 
                                          .sub-menu-item:hover {
-                                             color: #dc3545 !important;
-                                             background-color: rgba(220,53,69,0.1);
-                                             border-left: 3px solid #dc3545 !important;
+                                             color: #3ee80f !important;
+                                             background-color: rgba(62,232,15,0.1);
+                                             border-left: 3px solid #3ee80f !important;
                                              padding-left: 30px !important;
                                          }
 
@@ -309,21 +309,21 @@ export default function Header() {
                                              <a href="#0" onClick={(e) => toggleSubMenu(e, 'resources')}>RESOURCES</a>
                                              <div className={getDropdownClass('resources', true)} style={{ left: '0', right: '0', margin: '0 auto', maxWidth: '1000px', width: '95vw' }}>
                                                 <div className="multicol-column">
-                                                    <h6 style={{ padding: '0 20px', margin: '10px 0', borderBottom: '1px solid rgba(220,53,69,0.1)', fontWeight: 'bold' }}>Key Documents</h6>
+                                                    <h6 style={{ padding: '0 20px', margin: '10px 0', borderBottom: '1px solid rgba(62,232,15,0.2)', fontWeight: 'bold', color: '#3ee80f' }}>Key Documents</h6>
                                                     <Link href="/resources/iwuf-constitution" style={dropItemStyle} className="sub-menu-item">IWUF Constitution</Link>
                                                     <Link href="/resources/iwuf-rules" style={dropItemStyle} className="sub-menu-item">IWUF Rules and Regulations</Link>
                                                     <Link href="/resources/bwuf-constitution" style={dropItemStyle} className="sub-menu-item">BWUF Constitution</Link>
                                                     <Link href="/resources/bwuf-rules" style={dropItemStyle} className="sub-menu-item">BWUF Rules and Regulations</Link>
                                                 </div>
                                                 <div className="multicol-column">
-                                                    <h6 style={{ padding: '0 20px', margin: '10px 0', borderBottom: '1px solid rgba(220,53,69,0.1)', fontWeight: 'bold' }}>Training Materials</h6>
+                                                    <h6 style={{ padding: '0 20px', margin: '10px 0', borderBottom: '1px solid rgba(62,232,15,0.2)', fontWeight: 'bold', color: '#3ee80f' }}>Training Materials</h6>
                                                     <Link href="/resources/training-documents" style={dropItemStyle} className="sub-menu-item">Training Documents</Link>
                                                     <Link href="/resources/training-videos" style={dropItemStyle} className="sub-menu-item">Training Videos</Link>
                                                     <Link href="/resources/other-documentaries" style={dropItemStyle} className="sub-menu-item">Other Documentaries</Link>
                                                     <Link href="/resources/reference-books" style={dropItemStyle} className="sub-menu-item">Reference Books</Link>
                                                 </div>
                                                 <div className="multicol-column">
-                                                    <h6 style={{ padding: '0 20px', margin: '10px 0', borderBottom: '1px solid rgba(220,53,69,0.1)', fontWeight: 'bold' }}>Statistics</h6>
+                                                    <h6 style={{ padding: '0 20px', margin: '10px 0', borderBottom: '1px solid rgba(62,232,15,0.2)', fontWeight: 'bold', color: '#3ee80f' }}>Statistics</h6>
                                                     <Link href="/resources/national-competitions" style={dropItemStyle} className="sub-menu-item">National Competitions</Link>
                                                     <Link href="/resources/international-competitions" style={dropItemStyle} className="sub-menu-item">International Competitions</Link>
                                                     <Link href="/resources/regional-competitions" style={dropItemStyle} className="sub-menu-item">Regional Competitions</Link>
@@ -341,20 +341,21 @@ export default function Header() {
                 </div>
 
                 {/* Important Notice Ticker Under Navigation / Bottom of Header */}
-                <div style={{ backgroundColor: '#dc3545', borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
+                <div style={{ backgroundColor: '#3ee80f', borderBottom: '2px solid #3ee80f', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                     <style>{`
-                        .ticker-wrap { width: 100%; overflow: hidden; padding: 10px 0; white-space: nowrap; box-sizing: border-box; }
-                        .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 25s linear infinite; font-size: 14px; font-weight: 500; color: #fff; letter-spacing: 0.5px; }
+                        .ticker-wrap { width: 100%; overflow: hidden; padding: 12px 0; white-space: nowrap; box-sizing: border-box; }
+                        .ticker { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker 30s linear infinite; font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
                         .ticker:hover { animation-play-state: paused; cursor: pointer; }
                         @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+                        .text-acc-green { color: #3ee80f !important; }
                     `}</style>
                     <div className="ticker-wrap mt-0">
                         <div className="ticker">
                             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                                <i className="fas fa-bell text-warning"></i>
+                                <i className="fas fa-bell text-acc-green"></i>
                                 <span>{ticker.updatesText}</span>
-                                <span style={{ margin: '0 40px', color: 'rgba(255,255,255,0.4)' }}>|</span>
-                                <i className="fas fa-trophy text-warning"></i>
+                                <span style={{ margin: '0 40px', color: 'rgba(62,232,15,0.3)' }}>\\\\</span>
+                                <i className="fas fa-trophy text-acc-green"></i>
                                 <span>{ticker.resourcesText}</span>
                             </span>
                         </div>

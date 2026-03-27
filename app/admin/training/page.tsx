@@ -251,7 +251,7 @@ export default function TrainingAdmin() {
                                                 <button className="btn--base active" onClick={(e) => { e.preventDefault(); handleEdit(style); }} style={{ padding: '8px 20px' }}>
                                                     Edit <i className="fas fa-edit ml-1"></i>
                                                 </button>
-                                                <button className="btn--base" onClick={(e) => { e.preventDefault(); handleDelete(style._id); }} style={{ padding: '8px 20px', backgroundColor: '#dc3545', color: 'white' }}>
+                                                <button className="btn--base" onClick={(e) => { e.preventDefault(); handleDelete(style._id); }} style={{ padding: '8px 20px', backgroundColor: '#3ee80f', color: 'black' }}>
                                                     Delete <i className="fas fa-trash ml-1"></i>
                                                 </button>
                                             </div>

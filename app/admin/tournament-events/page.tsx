@@ -129,7 +129,7 @@ export default function TournamentEventsAdmin() {
 
                     <div className="row">
                         <div className="col-xl-5 col-lg-6">
-                            <div className="account-widget-form-area p-5 rounded h-100" style={{ backgroundColor: '#111', border: '1px solid #fdfcfcff' }}>
+                            <div className="account-widget-form-area p-5 rounded h-100" style={{ backgroundColor: '#111', border: '1px solid #3ee80f' }}>
                                 <div className="section-header">
                                     <h2 className="section-title" style={{ fontSize: '24px', color: "#fff" }}>{isEditing ? 'Edit' : 'Add New'} <span>Sports Event</span></h2>
                                 </div>
@@ -203,7 +203,7 @@ export default function TournamentEventsAdmin() {
                                             <div className="position-relative">
                                                 <img src={event.image || '/assets/images/placeholder.png'} alt={event.title} className="w-100" style={{ height: '180px', objectFit: 'cover' }} />
                                                 <div className="position-absolute" style={{ top: '15px', left: '15px' }}>
-                                                    <span className={`badge ${event.type === 'national' ? 'bg-danger' : 'bg-primary'}`}>{event.type.toUpperCase()}</span>
+                                                    <span className={`badge ${event.type === 'national' ? 'bg--secondary' : 'bg--primary'}`} style={{ color: '#000' }}>{event.type.toUpperCase()}</span>
                                                 </div>
                                             </div>
                                             <div className="p-4">

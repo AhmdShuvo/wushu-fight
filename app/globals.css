@@ -169,8 +169,8 @@ a {
 
 .cat-badge {
     display: inline-block;
-    background: #dc3545;
-    color: white;
+    background: #3ee80f;
+    color: #000;
     font-size: 10px;
     font-weight: 900;
     text-transform: uppercase;
@@ -195,8 +195,8 @@ a {
     right: 15px;
     width: 30px;
     height: 30px;
-    border-top: 2px solid rgba(220, 53, 69, 0.8);
-    border-right: 2px solid rgba(220, 53, 69, 0.8);
+    border-top: 2px solid rgba(62, 232, 15, 0.8);
+    border-right: 2px solid rgba(62, 232, 15, 0.8);
     transition: all 0.4s ease;
     opacity: 0;
 }
@@ -207,8 +207,8 @@ a {
     left: 15px;
     width: 30px;
     height: 30px;
-    border-bottom: 2px solid rgba(220, 53, 69, 0.8);
-    border-left: 2px solid rgba(220, 53, 69, 0.8);
+    border-bottom: 2px solid rgba(62, 232, 15, 0.8);
+    border-left: 2px solid rgba(62, 232, 15, 0.8);
     transition: all 0.4s ease;
     opacity: 0;
 }
@@ -235,3 +235,5 @@ a {
 [data-aos="width-expand"].aos-animate {
     width: 40px;
 }
+
+.text-acc-green { color: #3ee80f !important; }

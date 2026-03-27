@@ -184,7 +184,7 @@ export default function MediaPicker({ value, onChange, type = 'all', label = 'As
                 </div>
             )}
 
-            <style jsx>{`
+            <style>{`
                 .extra-small { font-size: 10px; }
                 .uppercase { text-transform: uppercase; letter-spacing: 1px; }
             `}</style>

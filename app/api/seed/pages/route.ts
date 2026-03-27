@@ -20,13 +20,17 @@ const aboutData: Record<string, any> = {
     'our-mission': {
         title: 'Our Mission',
         subtitle: 'What Drives Us',
-        layout: 'cards-overlay',
-        content: "Our mission is to develop Wushu athletes of international caliber, promote a healthy and disciplined lifestyle, and integrate the cultural philosophy of martial arts into modern sports development.",
-        cards: [
-            { icon: 'fa-fist-raised', title: 'Athletic Excellence', text: 'To provide world-class training facilities and coaching to produce champion athletes.' },
-            { icon: 'fa-heartbeat', title: 'Health & Well-being', text: 'To promote physical fitness and mental resilience through the regular practice of Wushu.' },
-            { icon: 'fa-balance-scale', title: 'Fair Play & Discipline', text: 'To instill the core values of martial arts: respect, honor, and continuous self-improvement.' }
-        ]
+        layout: 'content-image',
+        content: [
+            "Our mission is to develop Wushu athletes of international caliber, promote a healthy and disciplined lifestyle, and integrate the cultural philosophy of martial arts into modern sports development.",
+            "We aim to make Wushu accessible to every interested individual in Bangladesh, ensuring that the legacy of these martial arts is preserved and modernized for the next generation of champions."
+        ],
+        highlights: [
+            { icon: 'fa-fist-raised', title: 'Athletic Excellence', text: 'Produce world-class champions' },
+            { icon: 'fa-heartbeat', title: 'Health & Well-being', text: 'Promote physical and mental fitness' },
+            { icon: 'fa-balance-scale', title: 'Fair Play', text: 'Instill core martial arts values' }
+        ],
+        image: '/assets/images/bg/bg-22.png'
     },
     'our-vision': {
         title: 'Our Vision',

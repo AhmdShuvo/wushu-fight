@@ -28,7 +28,7 @@
   $(function () {
     $('.chart').easyPieChart({
       size: 160,
-      barColor: '#E80000',
+      barColor: '#3ee80',
       scaleColor: false,
       lineWidth: 8,
       trackColor: '#ffffff',
