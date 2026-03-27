@@ -35,6 +35,10 @@ export interface IContact extends Document {
         image: string;
         url: string;
     }[];
+    footer: {
+        logo: string;
+        description: string;
+    };
 }
 
 
@@ -86,7 +90,11 @@ const ContactSchema: Schema = new Schema({
             image: { type: String, default: '/assets/images/quicklinks/Picture7.png' },
             url: { type: String, default: '#' }
         }
-    ]
+    ],
+    footer: {
+        logo: { type: String, default: '/assets/images/wushu_logo.png' },
+        description: { type: String, default: 'Bangladesh Wushu Federation (BWUF) is the sole authority for Wushu in Bangladesh, dedicated to promoting martial arts excellence and discipline since 1986. We are affiliated with SAWUF, WFA, and IWUF.' }
+    }
 }, { timestamps: true });
 
 

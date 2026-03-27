@@ -144,6 +144,7 @@ export default function TournamentEventsAdmin() {
                                             <select name="type" className="form--control" value={formData.type} onChange={handleChange} required>
                                                 <option value="national">National</option>
                                                 <option value="international">International</option>
+                                                <option value="other">Other Activities</option>
                                             </select>
                                         </div>
                                         <div className="col-xl-6 col-lg-6 form-group">
@@ -203,7 +204,7 @@ export default function TournamentEventsAdmin() {
                                             <div className="position-relative">
                                                 <img src={event.image || '/assets/images/placeholder.png'} alt={event.title} className="w-100" style={{ height: '180px', objectFit: 'cover' }} />
                                                 <div className="position-absolute" style={{ top: '15px', left: '15px' }}>
-                                                    <span className={`badge ${event.type === 'national' ? 'bg--secondary' : 'bg--primary'}`} style={{ color: '#000' }}>{event.type.toUpperCase()}</span>
+                                                    <span className={`badge ${event.type === 'national' ? 'bg--secondary' : event.type === 'international' ? 'bg--primary' : 'bg-success'}`} style={{ color: '#000' }}>{event.type.toUpperCase()}</span>
                                                 </div>
                                             </div>
                                             <div className="p-4">

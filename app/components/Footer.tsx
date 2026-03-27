@@ -7,7 +7,7 @@ export default function Footer() {
     const [contact, setContact] = useState<any>(null);
 
     useEffect(() => {
-        fetch('/api/contact')
+        fetch('/api/contact', { cache: 'no-store' })
             .then(res => res.json())
             .then(data => {
                 if (data.contact) {
@@ -50,13 +50,11 @@ export default function Footer() {
                         <div className="footer-widget">
                             <div className="footer-logo mb-4">
                                 <Link href="/" className="site-logo site-title">
-                                    <img src="/assets/images/wushu_logo.png" alt="site-logo" style={{ maxWidth: '100px' }} />
+                                    <img src={contact?.footer?.logo || "/assets/images/wushu_logo.png"} alt="site-logo" style={{ maxWidth: '100px' }} />
                                 </Link>
                             </div>
                             <p className="text-white-50 mb-4" style={{ lineHeight: '1.8', textAlign: 'justify' }}>
-                                Bangladesh Wushu Federation (BWUF) is the sole authority for Wushu in Bangladesh, 
-                                dedicated to promoting martial arts excellence and discipline since 1986. 
-                                We are affiliated with SAWUF, WFA, and IWUF.
+                                {contact?.footer?.description || "Bangladesh Wushu Federation (BWUF) is the sole authority for Wushu in Bangladesh, dedicated to promoting martial arts excellence and discipline since 1986. We are affiliated with SAWUF, WFA, and IWUF."}
                             </p>
                             <ul className="footer-social d-flex gap-3 p-0 m-0" style={{ listStyle: 'none' }}>
                                 <li><a href={socials.facebook} target="_blank" className="social-link"><i className="fab fa-facebook-f"></i></a></li>

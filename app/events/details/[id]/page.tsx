@@ -44,20 +44,20 @@ export default function EventDetailsPage() {
                                 <div className="p-5">
                                     <h2 className="text-white mb-4" style={{ fontSize: '36px' }}>{event.title}</h2>
                                     <div className="d-flex flex-wrap gap-4 mb-5 pb-4 border-bottom border-secondary">
-                                        <div className="d-flex align-items-center text-white-50">
+                                        <div className="d-flex align-items-center text-white">
                                             <i className="fas fa-calendar-alt text-danger me-2 fa-lg"></i>
                                             <span>{event.date}</span>
                                         </div>
-                                        <div className="d-flex align-items-center text-white-50">
+                                        <div className="d-flex align-items-center text-white">
                                             <i className="fas fa-map-marker-alt text-danger me-2 fa-lg"></i>
                                             <span>{event.location}</span>
                                         </div>
-                                        <div className="d-flex align-items-center text-white-50 text-uppercase font-weight-bold">
+                                        <div className="d-flex align-items-center text-white text-uppercase font-weight-bold">
                                             <i className="fas fa-trophy text-danger me-2 fa-lg"></i>
                                             <span>{event.type} Competition</span>
                                         </div>
                                     </div>
-                                    <div className="description text-white-50 mb-5" style={{ fontSize: '18px', lineHeight: '1.8' }}>
+                                    <div className="description text-white mb-5" style={{ fontSize: '18px', lineHeight: '1.8' }}>
                                         {event.description}
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@ export default function EventDetailsPage() {
                                 )}
 
                                 <div className="mt-5">
-                                    <Link href={`/events/${event.type === 'national' ? 'national-sports' : 'international-sports'}`} className="btn--base w-100 text-center">
+                                    <Link href={`/events/${event.type === 'national' ? 'national-sports' : event.type === 'international' ? 'international-sports' : 'other-activities'}`} className="btn--base w-100 text-center">
                                         Back to All Events <i className="fas fa-arrow-left ms-2 order-first"></i>
                                     </Link>
                                 </div>

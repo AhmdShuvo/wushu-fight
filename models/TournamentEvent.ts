@@ -8,7 +8,7 @@ export interface ITournamentEvent extends Document {
     pdfUrl?: string;
     date: string;
     location: string;
-    type: 'national' | 'international';
+    type: 'national' | 'international' | 'other';
     gridSize: 'small' | 'medium' | 'large';
     order: number;
 }
@@ -21,7 +21,7 @@ const TournamentEventSchema: Schema = new Schema({
     pdfUrl: { type: String },
     date: { type: String, required: true },
     location: { type: String, required: true },
-    type: { type: String, enum: ['national', 'international'], required: true },
+    type: { type: String, enum: ['national', 'international', 'other'], required: true },
     gridSize: { type: String, enum: ['small', 'medium', 'large'], default: 'medium' },
     order: { type: Number, default: 0 },
 }, { timestamps: true });

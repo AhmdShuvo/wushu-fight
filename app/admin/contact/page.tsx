@@ -13,13 +13,14 @@ export default function ContactAdmin() {
         email: '',
         socials: { facebook: '', instagram: '', twitter: '', youtube: '', whatsapp: '' },
         contactPage: { title: '', subtitle: '', description: '' },
-        quickLinks: []
+        quickLinks: [],
+        footer: { logo: '', description: '' }
     });
 
     const [loading, setLoading] = useState(true);
 
     const fetchData = () => {
-        fetch('/api/contact')
+        fetch('/api/contact', { cache: 'no-store' })
             .then(res => res.json())
             .then(data => {
                 if (data.contact) {
@@ -30,7 +31,8 @@ export default function ContactAdmin() {
                         phone: { ...prev.phone, ...data.contact.phone },
                         socials: { ...prev.socials, ...data.contact.socials },
                         contactPage: { ...prev.contactPage, ...data.contact.contactPage },
-                        quickLinks: data.contact.quickLinks || []
+                        quickLinks: data.contact.quickLinks || [],
+                        footer: { ...prev.footer, ...data.contact.footer }
                     }));
                 }
                 setLoading(false);
@@ -75,6 +77,34 @@ export default function ContactAdmin() {
                 newLinks[index].image = data.url;
                 setContactData({ ...contactData, quickLinks: newLinks });
                 toast.success('Image uploaded!', { id: loadToast });
+            } else {
+                toast.error(data.error || 'Upload failed', { id: loadToast });
+            }
+        } catch (error) {
+            toast.error('Upload failed', { id: loadToast });
+        }
+    };
+
+    const handleFooterLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        const loadToast = toast.loading(`Uploading footer logo...`);
+        const fd = new FormData();
+        fd.append('file', file);
+
+        try {
+            const res = await fetch('/api/upload', { method: 'POST', body: fd });
+            const data = await res.json();
+            if (res.ok) {
+                setContactData({
+                    ...contactData,
+                    footer: {
+                        ...contactData.footer,
+                        logo: data.url
+                    }
+                });
+                toast.success('Footer logo uploaded!', { id: loadToast });
             } else {
                 toast.error(data.error || 'Upload failed', { id: loadToast });
             }
@@ -257,6 +287,29 @@ export default function ContactAdmin() {
                                     <div className="form-group">
                                         <label className="text-white-50 small">Description Description</label>
                                         <textarea className="form--control" style={{ height: '100px' }} value={contactData.contactPage.description} onChange={(e) => handleChange('contactPage', 'description', e.target.value)}></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-xl-6 mb-30">
+                                <div className="p-4 rounded h-100" style={{ backgroundColor: '#111', border: '1px solid #333' }}>
+                                    <h4 className="text-white mb-4 border-bottom pb-2">Footer Branding</h4>
+                                    <div className="form-group mb-4">
+                                        <label className="text-white-50 small mb-2 d-block">Footer Logo</label>
+                                        <div className="d-flex align-items-center gap-4 bg-dark p-3 rounded mb-2" style={{ border: '1px dashed #444' }}>
+                                            <div style={{ width: '80px', height: '80px', flexShrink: 0, position: 'relative' }}>
+                                                <img src={contactData.footer.logo || '/assets/images/wushu_logo.png'} style={{ width: '100%', height: '100%', objectFit: 'contain' }} alt="Footer Logo" />
+                                            </div>
+                                            <div className="flex-grow-1">
+                                                <input type="file" onChange={handleFooterLogoUpload} id="footer-logo-input" className="d-none" />
+                                                <label htmlFor="footer-logo-input" className="btn--base py-2 px-3 mb-1" style={{ fontSize: '12px', cursor: 'pointer' }}>Change Logo</label>
+                                                <p className="small text-white-50 m-0" style={{ fontSize: '10px' }}>Recommended: Transparent PNG, max 2MB</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group mb-0">
+                                        <label className="text-white-50 small">Footer About Description</label>
+                                        <textarea className="form--control" style={{ height: '120px' }} value={contactData.footer.description} onChange={(e) => handleChange('footer', 'description', e.target.value)} placeholder="Enter the organization description for the footer..."></textarea>
                                     </div>
                                 </div>
                             </div>

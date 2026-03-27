@@ -1,194 +1,66 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import InnerBanner from '../components/InnerBanner';
 
 export default function Events() {
+    const [events, setEvents] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('/api/tournament-events')
+            .then(res => res.json())
+            .then(data => {
+                if (data.events) setEvents(data.events);
+                setLoading(false);
+            })
+            .catch(() => setLoading(false));
+    }, []);
+
     return (
-        <>
-            <InnerBanner title="EVENTS" subtitle="" bgImage="/assets/images/bg/bg-12.png" activePage="Events" />
-            <section className="event-section event-section-two ptb-120">
+        <div style={{ background: 'linear-gradient(180deg, #0a0e14 0%, #151a21 100%)', minHeight: '100vh' }}>
+            <InnerBanner title="ALL" subtitle="EVENTS" bgImage="/assets/images/bg/bg-12.png" activePage="Events" />
+            
+            <section className="event-detail-section ptb-120">
+
                 <div className="container">
-                    <div className="row justify-content-center mb-60-none">
-                        <div className="col-xl-6 col-lg-6 mb-60">
-                            <div className="event-item">
-                                <div className="event-thumb">
-                                    <img src="/assets/images/event/event-1.png" alt="event" />
-                                </div>
-                                <div className="event-content">
-                                    <div className="event-meta-area">
-                                        <div className="event-post-meta">
-                                            <div className="event-location">
-                                                <span><i className="fas fa-map-marker-alt"></i> 684 Ann St. FL 34608</span>
-                                            </div>
-                                            <div className="event-date">
-                                                <span><i className="fas fa-clock"></i> 12:00 am</span>
-                                            </div>
-                                        </div>
-                                        <div className="event-badge">
-                                            <h3 className="badge-title"><span>21</span> <span className="month">feb</span></h3>
-                                        </div>
+                    {loading ? (
+                        <div className="text-center py-5"><div className="spinner-border" style={{ color: '#3ee80f' }}></div></div>
+                    ) : events.length === 0 ? (
+                        <div className="text-center py-5 text-white-50">No events found.</div>
+                    ) : (
+                        <div className="bento-grid mt-4">
+                            {events.map((event) => (
+                                <div key={event._id} className={`bento-item ${event.gridSize || 'medium'}`}>
+                                    <div className="bento-img-container">
+                                        <img src={event.image || '/assets/images/bg/bg-12.png'} alt={event.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        <div className="bento-overlay"></div>
                                     </div>
-                                    <h3 className="title"><Link href="/event-details">The 5th International Masters` Tournament</Link></h3>
-                                    <p>Mark Magsayo upset Gary Russell Jr. by decision on Saturday night to claim the WBC featherweight title in Atlantic City.</p>
-                                    <div className="event-btn">
-                                        <Link href="/event-details">Read More <i className="fas fa-arrow-right ml-2"></i></Link>
+                                    <div className="attachment-icons">
+                                        {event.videoUrl && <div className="attachment-icon" title="Video Available"><i className="fas fa-play"></i></div>}
+                                        {event.pdfUrl && <div className="attachment-icon" title="PDF Available"><i className="fas fa-file-pdf"></i></div>}
+                                    </div>
+                                    <div className="bento-content">
+                                        <span className="bento-badge" style={{ background: event.type === 'national' ? 'linear-gradient(90deg, #3ee80f, #7af260)' : event.type === 'international' ? 'linear-gradient(90deg, #007bff, #00d2ff)' : 'linear-gradient(90deg, #ffc107, #ff9800)' }}>
+                                            {event.type}
+                                        </span>
+                                        <h3 className="title-h mb-2" style={{ color: '#fff' }}>{event.title}</h3>
+                                        <p className="small text-white mb-4" style={{ letterSpacing: '0.5px' }}>
+                                            <i className="fas fa-map-marker-alt me-2" style={{ color: '#3ee80f' }}></i> {event.location} 
+                                            <span className="mx-2">|</span> 
+                                            <i className="fas fa-calendar-alt me-2" style={{ color: '#3ee80f' }}></i> {event.date}
+                                        </p>
+                                        <Link href={`/events/details/${event._id}`} className="btn--base btn-sm px-4">
+                                            EXPLORE EVENT <i className="fas fa-chevron-right ml-2" style={{ fontSize: '10px' }}></i>
+                                        </Link>
                                     </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
-                        <div className="col-xl-6 col-lg-6 mb-60">
-                            <div className="event-item">
-                                <div className="event-thumb">
-                                    <img src="/assets/images/event/event-2.png" alt="event" />
-                                </div>
-                                <div className="event-content">
-                                    <div className="event-meta-area">
-                                        <div className="event-post-meta">
-                                            <div className="event-location">
-                                                <span><i className="fas fa-map-marker-alt"></i> 684 Ann St. FL 34608</span>
-                                            </div>
-                                            <div className="event-date">
-                                                <span><i className="fas fa-clock"></i> 12:00 am</span>
-                                            </div>
-                                        </div>
-                                        <div className="event-badge">
-                                            <h3 className="badge-title"><span>22</span> <span className="month">feb</span></h3>
-                                        </div>
-                                    </div>
-                                    <h3 className="title"><Link href="/event-details">PBSC Thai Wushu Sparring Tournament</Link></h3>
-                                    <p>Mark Magsayo upset Gary Russell Jr. by decision on Saturday night to claim the WBC featherweight title in Atlantic City.</p>
-                                    <div className="event-btn">
-                                        <Link href="/event-details">Read More <i className="fas fa-arrow-right ml-2"></i></Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 mb-60">
-                            <div className="event-item">
-                                <div className="event-thumb">
-                                    <img src="/assets/images/event/event-3.png" alt="event" />
-                                </div>
-                                <div className="event-content">
-                                    <div className="event-meta-area">
-                                        <div className="event-post-meta">
-                                            <div className="event-location">
-                                                <span><i className="fas fa-map-marker-alt"></i> 684 Ann St. FL 34608</span>
-                                            </div>
-                                            <div className="event-date">
-                                                <span><i className="fas fa-clock"></i> 12:00 am</span>
-                                            </div>
-                                        </div>
-                                        <div className="event-badge">
-                                            <h3 className="badge-title"><span>23</span> <span className="month">feb</span></h3>
-                                        </div>
-                                    </div>
-                                    <h3 className="title"><Link href="/event-details">Annual Informal MMA Conference of 2024</Link></h3>
-                                    <p>Mark Magsayo upset Gary Russell Jr. by decision on Saturday night to claim the WBC featherweight title in Atlantic City.</p>
-                                    <div className="event-btn">
-                                        <Link href="/event-details">Read More <i className="fas fa-arrow-right ml-2"></i></Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 mb-60">
-                            <div className="event-item">
-                                <div className="event-thumb">
-                                    <img src="/assets/images/event/event-4.png" alt="event" />
-                                </div>
-                                <div className="event-content">
-                                    <div className="event-meta-area">
-                                        <div className="event-post-meta">
-                                            <div className="event-location">
-                                                <span><i className="fas fa-map-marker-alt"></i> 684 Ann St. FL 34608</span>
-                                            </div>
-                                            <div className="event-date">
-                                                <span><i className="fas fa-clock"></i> 12:00 am</span>
-                                            </div>
-                                        </div>
-                                        <div className="event-badge">
-                                            <h3 className="badge-title"><span>24</span> <span className="month">feb</span></h3>
-                                        </div>
-                                    </div>
-                                    <h3 className="title"><Link href="/event-details">About the Champs: Friendly MMA Convention</Link></h3>
-                                    <p>Mark Magsayo upset Gary Russell Jr. by decision on Saturday night to claim the WBC featherweight title in Atlantic City.</p>
-                                    <div className="event-btn">
-                                        <Link href="/event-details">Read More <i className="fas fa-arrow-right ml-2"></i></Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 mb-60">
-                            <div className="event-item">
-                                <div className="event-thumb">
-                                    <img src="/assets/images/event/event-5.png" alt="event" />
-                                </div>
-                                <div className="event-content">
-                                    <div className="event-meta-area">
-                                        <div className="event-post-meta">
-                                            <div className="event-location">
-                                                <span><i className="fas fa-map-marker-alt"></i> 684 Ann St. FL 34608</span>
-                                            </div>
-                                            <div className="event-date">
-                                                <span><i className="fas fa-clock"></i> 12:00 am</span>
-                                            </div>
-                                        </div>
-                                        <div className="event-badge">
-                                            <h3 className="badge-title"><span>25</span> <span className="month">feb</span></h3>
-                                        </div>
-                                    </div>
-                                    <h3 className="title"><Link href="/event-details">Virtual Shadow Wushu Class With 3x Golden Glove Champion!</Link></h3>
-                                    <p>Mark Magsayo upset Gary Russell Jr. by decision on Saturday night to claim the WBC featherweight title in Atlantic City.</p>
-                                    <div className="event-btn">
-                                        <Link href="/event-details">Read More <i className="fas fa-arrow-right ml-2"></i></Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 mb-60">
-                            <div className="event-item">
-                                <div className="event-thumb">
-                                    <img src="/assets/images/event/event-6.png" alt="event" />
-                                </div>
-                                <div className="event-content">
-                                    <div className="event-meta-area">
-                                        <div className="event-post-meta">
-                                            <div className="event-location">
-                                                <span><i className="fas fa-map-marker-alt"></i> 684 Ann St. FL 34608</span>
-                                            </div>
-                                            <div className="event-date">
-                                                <span><i className="fas fa-clock"></i> 12:00 am</span>
-                                            </div>
-                                        </div>
-                                        <div className="event-badge">
-                                            <h3 className="badge-title"><span>26</span> <span className="month">feb</span></h3>
-                                        </div>
-                                    </div>
-                                    <h3 className="title"><Link href="/event-details">Adaptive Wushu $0-Sponsored by SCF Virtual Fitness</Link></h3>
-                                    <p>Mark Magsayo upset Gary Russell Jr. by decision on Saturday night to claim the WBC featherweight title in Atlantic City.</p>
-                                    <div className="event-btn">
-                                        <Link href="/event-details">Read More <i className="fas fa-arrow-right ml-2"></i></Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <nav>
-                        <ul className="pagination justify-content-center">
-                            <li className="page-item prev">
-                                <a className="page-link" href="#" rel="prev" aria-label="Prev &raquo;">PREV</a>
-                            </li>
-                            <li className="page-item"><a className="page-link" href="#">01</a></li>
-                            <li className="page-item active" aria-current="page"><span className="page-link">02</span></li>
-                            <li className="page-item"><a className="page-link" href="#">03</a></li>
-                            <li className="page-item"><a className="page-link" href="#">04</a></li>
-                            <li className="page-item"><a className="page-link" href="#">05</a></li>
-                            <li className="page-item next">
-                                <a className="page-link" href="#" rel="next" aria-label="Next &raquo;">NEXT</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    )}
                 </div>
             </section>
-        </>
+        </div>
     );
 }

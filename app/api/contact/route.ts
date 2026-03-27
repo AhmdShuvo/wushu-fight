@@ -11,14 +11,25 @@ export async function GET() {
             contact = new Contact();
             await contact.save();
         } else {
-            // Check if it's an old schema document (has line1, missing room)
+            // Proactively migrate legacy documents to ensure all new fields exist
             const obj = contact.toObject();
-            if (obj.address?.line1 && !obj.address?.room) {
-                // Migrate or just ensure room/etc are returned as defaults
-                // Better: ensure the document in memory has the new fields
-                const defaults = new Contact().toObject();
-                contact.address = { ...defaults.address, ...obj.address };
+            const defaults = new Contact().toObject();
+            let needsSave = false;
+            
+            if (!obj.footer) {
+                contact.footer = defaults.footer;
+                needsSave = true;
             }
+            if (!obj.contactPage) {
+                contact.contactPage = defaults.contactPage;
+                needsSave = true;
+            }
+            if (obj.address?.line1 && !obj.address?.room) {
+                contact.address = { ...defaults.address, ...obj.address };
+                needsSave = true;
+            }
+            
+            if (needsSave) await contact.save();
         }
         return NextResponse.json({ contact });
     } catch (error: any) {
@@ -42,10 +53,14 @@ export async function POST(request: Request) {
         } else {
             // Clean/Merge only schema fields
             Object.assign(contact, body);
-            // Handle address nested update
-            if (body.address) {
-                contact.address = { ...contact.address.toObject(), ...body.address };
-            }
+            // Handle nested updates for safety
+            if (body.address) contact.address = { ...contact.address.toObject(), ...body.address };
+            if (body.phone) contact.phone = { ...contact.phone.toObject(), ...body.phone };
+            if (body.socials) contact.socials = { ...contact.socials.toObject(), ...body.socials };
+            if (body.contactPage) contact.contactPage = { ...contact.contactPage.toObject(), ...body.contactPage };
+            if (body.footer) contact.footer = { ...contact.footer.toObject(), ...body.footer };
+            if (body.email) contact.email = body.email;
+            if (body.quickLinks) contact.quickLinks = body.quickLinks;
         }
         await contact.save();
         
