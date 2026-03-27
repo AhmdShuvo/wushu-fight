@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '../../../lib/db';
 import Media from '../../../models/Media';
+import { adminProtectedRoute } from '../../../lib/auth';
+import { logActivity } from '../../../lib/activity';
 
 export async function GET(request: Request) {
     try {
@@ -21,6 +23,9 @@ export async function GET(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+    const authError = await adminProtectedRoute();
+    if (authError) return authError;
+
     try {
         await dbConnect();
         const { searchParams } = new URL(request.url);
@@ -29,6 +34,10 @@ export async function DELETE(request: Request) {
         if (!id) return NextResponse.json({ error: "No ID provided" }, { status: 400 });
 
         await Media.findByIdAndDelete(id);
+        
+        // LOG ACTIVITY
+        await logActivity("DELETED_MEDIA", request, { id });
+
         return NextResponse.json({ message: "Media deleted" });
     } catch (e: any) {
         return NextResponse.json({ error: e.message }, { status: 500 });

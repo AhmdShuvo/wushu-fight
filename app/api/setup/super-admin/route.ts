@@ -10,6 +10,11 @@ export async function POST(request: Request) {
         const { name, email, password, setupKey } = await request.json();
 
         // Basic security check to prevent public creation
+        const superAdminExists = await User.findOne({ role: UserRole.SUPER_ADMIN });
+        if (superAdminExists) {
+            return NextResponse.json({ error: "System already setup. Use admin dashboard to manage users." }, { status: 403 });
+        }
+
         // The user can specify a SETUP_KEY in .env or we can just check if super admin exists
         if (setupKey !== process.env.NEXTAUTH_SECRET) {
             return NextResponse.json({ error: "Unauthorized setup key" }, { status: 401 });

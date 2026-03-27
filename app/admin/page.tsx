@@ -18,6 +18,7 @@ export default function AdminDashboard() {
         { name: 'Contact & Socials', href: '/admin/contact', icon: 'fa-address-card', category: 'GLOBAL' },
         { name: 'Static Pages/Story', href: '/admin/pages', icon: 'fa-file-alt', category: 'GLOBAL' },
         { name: 'Admin/Team Members', href: '/admin/members', icon: 'fa-user-tie', category: 'GLOBAL' },
+        { name: 'System Activity Logs', href: '/admin/activity', icon: 'fa-history', category: 'GLOBAL' },
         { name: 'Testimonial Moderation', href: '/admin/testimonials', icon: 'fa-comment-dots', category: 'GLOBAL' },
         { name: 'Footer Quick Links', href: '/admin/contact#footer', icon: 'fa-link', category: 'GLOBAL' },
 

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Feature from '@/models/Feature';
+import { adminProtectedRoute } from '@/lib/auth';
 
 export async function GET() {
     await dbConnect();
@@ -13,6 +14,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+    const authError = await adminProtectedRoute();
+    if (authError) return authError;
+
     await dbConnect();
     try {
         const body = await request.json();
@@ -29,6 +33,9 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+    const authError = await adminProtectedRoute();
+    if (authError) return authError;
+
     await dbConnect();
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');

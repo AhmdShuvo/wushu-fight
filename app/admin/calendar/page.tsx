@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import InnerBanner from '../../components/InnerBanner';
+import CustomDateTimePicker from '../../components/CustomDateTimePicker';
 
 export default function CalendarAdmin() {
     const [events, setEvents] = useState<any[]>([]);
@@ -34,7 +35,16 @@ export default function CalendarAdmin() {
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        let newFormData = { ...formData, [name]: value };
+        
+        if (name === 'date' && value) {
+            const date = new Date(value);
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            newFormData.month = monthNames[date.getMonth()];
+        }
+        
+        setFormData(newFormData);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -113,7 +123,7 @@ export default function CalendarAdmin() {
                 <div className="container" style={{ maxWidth: '1200px' }}>
                     <div className="d-flex justify-content-between align-items-center mb-60 flex-wrap gap-4">
                         <div className="section-header mb-0">
-                            <h2 className="section-title">Manage <span>Yearly</span> Calendar</h2>
+                            <h2 className="section-title"> <span>Yearly Calendar</span></h2>
                         </div>
                         <Link href="/admin" className="btn--base">Back to Dashboard <i className="fas fa-arrow-right ml-2"></i></Link>
                     </div>
@@ -125,15 +135,12 @@ export default function CalendarAdmin() {
                                     <h2 className="section-title" style={{ fontSize: '24px' }}>{isEditing ? 'Edit' : 'Add'} <span>Event</span></h2>
                                 </div>
                                 <form className="account-widget-form mt-4" onSubmit={handleSubmit}>
-                                    <div className="form-group mb-4">
-                                        <label className="text-white mb-2 font-weight-bold">Month</label>
-                                        <select name="month" className="form--control" value={formData.month} onChange={handleChange} required>
-                                            <option value="">Select Month</option>
-                                            {['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map(m => (
-                                                <option key={m} value={m}>{m}</option>
-                                            ))}
-                                        </select>
-                                    </div>
+                                    {formData.month && (
+                                        <div className="mb-4">
+                                            <label className="text-white-50 mb-1" style={{ fontSize: '12px', textTransform: 'uppercase' }}>Selected Month</label>
+                                            <div className="h4 text-white" style={{ color: '#3ee80f' }}>{formData.month}</div>
+                                        </div>
+                                    )}
                                     <div className="form-group mb-4">
                                         <label className="text-white mb-2 font-weight-bold">Event Name</label>
                                         <input type="text" name="event" className="form--control" value={formData.event} onChange={handleChange} required />
@@ -143,8 +150,15 @@ export default function CalendarAdmin() {
                                         <input type="text" name="location" className="form--control" value={formData.location} onChange={handleChange} required />
                                     </div>
                                     <div className="form-group mb-4">
-                                        <label className="text-white mb-2 font-weight-bold">Date Range</label>
-                                        <input type="text" name="date" className="form--control" value={formData.date} onChange={handleChange} required placeholder="e.g. Jan 05-15" />
+                                        <label className="text-white mb-2 font-weight-bold">Event Date & Time</label>
+                                        <CustomDateTimePicker 
+                                            value={formData.date} 
+                                            onChange={(val) => {
+                                                const e = { target: { name: 'date', value: val } } as any;
+                                                handleChange(e);
+                                            }} 
+                                            placeholder="Select Date & Time"
+                                        />
                                     </div>
                                     <div className="form-group mb-4">
                                         <label className="text-white mb-2 font-weight-bold">Display Order</label>
@@ -192,6 +206,85 @@ export default function CalendarAdmin() {
                     </div>
                 </div>
             </section>
+            <style jsx>{`
+                .form-group {
+                    position: relative;
+                }
+                .input-with-icon {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                }
+                .calendar-icon {
+                    position: absolute;
+                    right: 20px;
+                    color: #3ee80f;
+                    font-size: 18px;
+                    pointer-events: none;
+                    transition: all 0.3s ease;
+                }
+                .form--control {
+                    background: rgba(26, 26, 26, 0.8) !important;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                    color: #fff !important;
+                    padding: 15px 18px !important;
+                    padding-right: 50px !important; /* Make room for icon */
+                    border-radius: 12px !important;
+                    font-size: 15px !important;
+                    letter-spacing: 0.5px;
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    cursor: pointer;
+                }
+                .form--control:focus {
+                    background: rgba(30, 30, 30, 0.95) !important;
+                    border-color: #3ee80f !important;
+                    box-shadow: 0 0 25px rgba(62, 232, 15, 0.2), inset 0 0 10px rgba(62, 232, 15, 0.05) !important;
+                    outline: none;
+                }
+                .form--control:focus + .calendar-icon {
+                    transform: scale(1.1);
+                    text-shadow: 0 0 10px rgba(62, 232, 15, 0.5);
+                }
+                .form--control:hover {
+                    border-color: rgba(62, 232, 15, 0.4) !important;
+                }
+                input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: transparent;
+                    color: transparent;
+                    cursor: pointer;
+                    z-index: 1;
+                    /* Hide the default icon but keep the hit area */
+                }
+                .btn--base {
+                    background: linear-gradient(135deg, #3ee80f 0%, #2dbd0c 100%);
+                    color: #000;
+                    padding: 15px 25px;
+                    border-radius: 12px;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    border: none;
+                    box-shadow: 0 4px 15px rgba(62, 232, 15, 0.2);
+                    transition: all 0.4s ease;
+                }
+                .btn--base:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 25px rgba(62, 232, 15, 0.4);
+                    filter: brightness(1.1);
+                }
+                .section-title span {
+                    color: #3ee80f;
+                    text-shadow: 0 0 15px rgba(62, 232, 15, 0.2);
+                }
+            `}</style>
         </>
     );
 }

@@ -6,7 +6,7 @@ import { adminProtectedRoute } from '@/lib/auth';
 export async function GET() {
     await dbConnect();
     try {
-        const events = await CalendarEvent.find().sort({ order: 1 });
+        const events = await CalendarEvent.find().sort({ date: -1 });
         return NextResponse.json({ events });
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });

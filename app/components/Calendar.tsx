@@ -21,6 +21,23 @@ export default function Calendar() {
             });
     }, []);
 
+    const formatDate = (dateStr: string) => {
+        try {
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) return dateStr;
+            return date.toLocaleString('en-US', { 
+                day: '2-digit', 
+                month: 'short', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+        } catch {
+            return dateStr;
+        }
+    };
+
     if (loading) {
         return (
             <div className="ptb-80 text-center">
@@ -61,7 +78,7 @@ export default function Calendar() {
                                         <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>MONTH</th>
                                         <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>EVENT NAME</th>
                                         <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>LOCATION</th>
-                                        <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>DATE</th>
+                                        <th style={{ backgroundColor: '#3ee80f', color: '#000', border: 'none', padding: '20px', fontWeight: 800 }}>DATE & TIME</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,7 +90,7 @@ export default function Calendar() {
                                                 <i className="fas fa-map-marker-alt me-2" style={{ color: '#3ee80f' }}></i> {item.location}
                                             </td>
                                             <td style={{ padding: '15px 20px', color: '#fff', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                                                <i className="fas fa-calendar-alt me-2" style={{ color: '#3ee80f' }}></i> {item.date}
+                                                <i className="fas fa-calendar-alt me-2" style={{ color: '#3ee80f' }}></i> {formatDate(item.date)}
                                             </td>
                                         </tr>
                                     ))}

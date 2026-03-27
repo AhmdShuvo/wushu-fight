@@ -52,7 +52,7 @@ export default function RootLayout({
       </head>
       <body className={`${kanit.variable} ${roboto.variable}`}>
         <Providers>
-          <Toaster position="top-center" reverseOrder={false} />
+          <Toaster position="bottom-center" reverseOrder={false} />
           <AosInit />
           <Header />
 
