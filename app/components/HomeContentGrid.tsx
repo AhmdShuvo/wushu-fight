@@ -12,7 +12,7 @@ function ReadMoreText({ text, limit = 100 }: { text: string; limit?: number }) {
 
     return (
         <>
-            <p className="mt-3" style={{ fontSize: '14px', color: '#666', lineHeight: '1.6', textAlign: 'justify' }}>
+            <p className="mt-3" style={{ fontSize: '15px', color: 'inherit', lineHeight: '1.8', textAlign: 'justify' }}>
                 {displayText}
             </p>
             {shouldTruncate && (
@@ -53,83 +53,133 @@ export default function HomeContentGrid() {
         );
     }
 
+    console.log("RENDERING HOME GRID WITH BG:", gridData.sectionBackground || '/assets/images/bg/bg-1.png');
+
     return (
-        <section className="home-content-section pt-120 pb-120" style={{ backgroundColor: '#fff' }}>
-            <div className="container-fluid" style={{ padding: '0 5%' }}>
-                <div className="row g-5 gy-5">
+        <section className="home-content-section pt-120 pb-120 bg_img dynamic-bg" style={{ 
+            backgroundAttachment: 'fixed',
+            position: 'relative'
+        }}>
+            {/* Background Image managed via CSS below */}
+            <div className="section-overlay" style={{ 
+                position: 'absolute', 
+                top: 0, 
+                left: 0, 
+                width: '100%', 
+                height: '100%', 
+                backgroundColor: 'rgba(0,0,0,0.7)', 
+                zIndex: 0 
+            }}></div>
+
+            <div className="container-fluid" style={{ padding: '0 5%', position: 'relative', zIndex: 1 }}>
+                <div className="row g-4 gy-4">
                     {/* Part 1: Messages area (4 Units) */}
                     <div className="col-xl-4 col-lg-5">
-                        <div className="d-flex flex-column gap-5">
+                        <div className="d-flex flex-column gap-4">
                             {/* President */}
-                            <div className="content-card p-5 border shadow-sm bg-white position-relative overflow-hidden" style={{ borderLeft: '10px solid #3ee80f' }}>
+                            <div className="content-card p-5 position-relative overflow-hidden" 
+                                 style={{ 
+                                     backgroundColor: 'rgba(20, 20, 20, 0.75)', 
+                                     backdropFilter: 'blur(15px)',
+                                     border: '1px solid rgba(255, 255, 255, 0.1)',
+                                     borderLeft: '8px solid #3ee80f',
+                                     color: '#fff'
+                                 }}>
                                 <div className="d-flex align-items-center mb-4 gap-4">
-                                    <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '4px solid #f8f9fa', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.1)' }}>
+                                    <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.1)', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.3)' }}>
                                         {gridData.president.image ? (
                                             <Image src={gridData.president.image} alt="President" fill style={{ objectFit: 'cover' }} />
                                         ) : (
-                                            <div className="bg-light w-100 h-100 d-flex align-items-center justify-content-center text-muted">No Image</div>
+                                            <div className="bg-dark w-100 h-100 d-flex align-items-center justify-content-center text-muted">No Image</div>
                                         )}
                                     </div>
                                     <div>
-                                        <h4 className="title mb-1" style={{ fontSize: '20px', fontWeight: 800, color: '#111' }}>{gridData.president.title}</h4>
-                                        {/* <span className="text--acc small font-weight-bold letter-spacing-1">LEADERSHIP MESSAGE</span> */}
+                                        <h4 className="title mb-1" style={{ fontSize: '20px', fontWeight: 800, color: '#fff' }}>{gridData.president.title}</h4>
+                                        <span className="text--acc small font-weight-bold letter-spacing-1" style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px' }}>Leadership Message</span>
                                     </div>
                                 </div>
-                                <ReadMoreText text={gridData.president.content} limit={40} />
+                                <div className="text-white" style={{ lineHeight: '1.7' }}>
+                                    <ReadMoreText text={gridData.president.content} limit={40} />
+                                </div>
                             </div>
 
                             {/* Secretary */}
-                            <div className="content-card p-5 border shadow-sm bg-white position-relative overflow-hidden" style={{ borderLeft: '10px solid #333' }}>
+                            <div className="content-card p-5 position-relative overflow-hidden" 
+                                 style={{ 
+                                     backgroundColor: 'rgba(20, 20, 20, 0.75)', 
+                                     backdropFilter: 'blur(15px)',
+                                     border: '1px solid rgba(255, 255, 255, 0.1)',
+                                     borderLeft: '8px solid #333',
+                                     color: '#fff'
+                                 }}>
                                 <div className="d-flex align-items-center mb-4 gap-4">
-                                    <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '4px solid #f8f9fa', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.1)' }}>
+                                    <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.1)', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.3)' }}>
                                         {gridData.secretary.image ? (
                                             <Image src={gridData.secretary.image} alt="Secretary" fill style={{ objectFit: 'cover' }} />
                                         ) : (
-                                            <div className="bg-light w-100 h-100 d-flex align-items-center justify-content-center text-muted">No Image</div>
+                                            <div className="bg-dark w-100 h-100 d-flex align-items-center justify-content-center text-muted">No Image</div>
                                         )}
                                     </div>
                                     <div>
-                                        <h4 className="title mb-1" style={{ fontSize: '20px', fontWeight: 800, color: '#111' }}>{gridData.secretary.title}</h4>
-                                        {/* <span className="text-muted small font-weight-bold letter-spacing-1">EXECUTIVE INSIGHT</span> */}
+                                        <h4 className="title mb-1" style={{ fontSize: '20px', fontWeight: 800, color: '#fff' }}>{gridData.secretary.title}</h4>
+                                        <span className="text-white-50 small font-weight-bold letter-spacing-1" style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px' }}>Executive Directive</span>
                                     </div>
                                 </div>
-                                <ReadMoreText text={gridData.secretary.content} limit={40} />
+                                <div className="text-white" style={{ lineHeight: '1.7' }}>
+                                    <ReadMoreText text={gridData.secretary.content} limit={40} />
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Part 2: Information Area (8 Units) */}
                     <div className="col-xl-8 col-lg-7">
-                        <div className="d-flex flex-column gap-5">
+                        <div className="d-flex flex-column gap-4">
                             {/* History (Styled like About Page design) */}
-                            <div className="history-section p-5 shadow-lg bg-light h-100" style={{ overflow: 'hidden', border: '1px solid #eee' }}>
+                            <div className="history-section p-5 shadow-lg position-relative" 
+                                 style={{ 
+                                     overflow: 'hidden', 
+                                     backgroundColor: 'rgba(255, 255, 255, 0.04)', 
+                                     backdropFilter: 'blur(10px)',
+                                     border: '1px solid rgba(255,255,255,0.08)'
+                                 }}>
                                 <div className="row align-items-center g-4">
                                     <div className="col-md-5">
-                                        <div className="history-image-frame position-relative" style={{ height: '350px', overflow: 'hidden', boxShadow: '0 15px 30px rgba(0,0,0,0.1)' }}>
+                                        <div className="history-image-frame position-relative" style={{ height: '350px', overflow: 'hidden', boxShadow: '0 15px 30px rgba(0,0,0,0.4)', borderRadius: '4px' }}>
                                             <Image src={gridData.history.image || '/assets/images/bg/bg-11.png'} alt="History" fill style={{ objectFit: 'cover' }} />
-                                            <div className="overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 100%)' }}></div>
+                                            <div className="overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%)' }}></div>
                                         </div>
                                     </div>
                                     <div className="col-md-7">
                                         <div className="section-header mb-0">
                                             <h4 className="text--acc mb-2 font-weight-bold" style={{ fontSize: '14px', letterSpacing: '4px' }}>{gridData.history.subtitle || 'ESTABLISHED 1986'}</h4>
-                                            <h2 className="text-dark mb-4 h1 font-weight-bold">{gridData.history.title}</h2>
-                                            <ReadMoreText text={gridData.history.content} limit={120} />
+                                            <h2 className="text-white mb-4 h1 font-weight-bold">{gridData.history.title}</h2>
+                                            <div className="text-white" style={{ lineHeight: '1.8' }}>
+                                                <ReadMoreText text={gridData.history.content} limit={120} />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* About BWUF */}
-                            <div className="about-grid-card p-5 border border-secondary bg-white shadow-sm position-relative overflow-hidden" style={{ borderLeft: '1px solid #eee' }}>
+                            <div className="about-grid-card p-5 position-relative overflow-hidden" 
+                                 style={{ 
+                                     backgroundColor: 'rgba(62, 232, 15, 0.08)', 
+                                     backdropFilter: 'blur(5px)',
+                                     border: '1px solid rgba(62, 232, 15, 0.3)',
+                                     boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
+                                 }}>
                                 <div className="row g-4 align-items-center">
                                     <div className="col-lg-7">
                                         <h4 className="text--acc mb-2 font-weight-bold" style={{ fontSize: '14px', letterSpacing: '4px' }}>{gridData.about.subtitle || 'OUR STORY'}</h4>
-                                        <h2 className="text-dark mb-4 h1 font-weight-bold">{gridData.about.title}</h2>
-                                        <ReadMoreText text={gridData.about.content} limit={100} />
+                                        <h2 className="text-white mb-4 h1 font-weight-bold">{gridData.about.title}</h2>
+                                        <div className="text-white" style={{ lineHeight: '1.8' }}>
+                                            <ReadMoreText text={gridData.about.content} limit={100} />
+                                        </div>
                                     </div>
                                     <div className="col-lg-5">
-                                        <div className="about-stats-container position-relative" style={{ height: '300px', overflow: 'hidden' }}>
+                                        <div className="about-stats-container position-relative" style={{ height: '300px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', boxShadow: '0 15px 30px rgba(0,0,0,0.4)' }}>
                                             <Image src={gridData.about.image || '/assets/images/bg/bg-12.png'} alt="About" fill style={{ objectFit: 'cover' }} />
                                         </div>
                                     </div>
@@ -140,8 +190,19 @@ export default function HomeContentGrid() {
                 </div>
             </div>
             <style>{`
-                .content-card { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
-                .content-card:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0,0,0,0.12) !important; }
+                .dynamic-bg {
+                    background-image: url("${gridData.sectionBackground || '/assets/images/bg/bg-1.png'}") !important;
+                }
+                .content-card, .history-section, .about-grid-card { 
+                    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+                    border-radius: 4px;
+                    margin: 10px 0;
+                }
+                .content-card:hover, .history-section:hover, .about-grid-card:hover { 
+                    transform: translateY(-8px); 
+                    box-shadow: 0 40px 80px rgba(0,0,0,0.6) !important;
+                    border-color: rgba(62, 232, 15, 0.4) !important;
+                }
                 .overflow-hidden { overflow: hidden; }
                 .letter-spacing-1 { letter-spacing: 1px; }
                 .text--acc { color: #3ee80f !important; }

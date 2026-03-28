@@ -11,7 +11,8 @@ export default function HomeGridAdmin() {
         president: { title: 'Message from the President', content: '', image: '' },
         history: { title: 'History of Wushu', content: '', image: '', subtitle: 'ESTABLISHED 1986' },
         about: { title: 'About BWUF', content: '', image: '', subtitle: 'OUR STORY' },
-        secretary: { title: 'Message from the General Secretary', content: '', image: '' }
+        secretary: { title: 'Message from the General Secretary', content: '', image: '' },
+        sectionBackground: '/assets/images/bg/bg-1.png'
     });
     const [loading, setLoading] = useState(true);
 
@@ -88,6 +89,47 @@ export default function HomeGridAdmin() {
                     </div>
 
                     <form className="account-widget-form" onSubmit={handleSubmit}>
+                        {/* Section Background Control */}
+                        <div className="row mb-50">
+                            <div className="col-12">
+                                <div className="p-5 rounded" style={{ backgroundColor: '#1a1a1a', border: '2px dashed #3ee80f' }}>
+                                    <h4 className="text-white mb-4 d-flex align-items-center gap-3">
+                                        <i className="fas fa-image text--acc"></i> 
+                                        Section Main Background (Grid Banner)
+                                    </h4>
+                                    <div className="row align-items-center">
+                                        <div className="col-lg-6">
+                                            <MediaPicker 
+                                                label="Global Background Image" 
+                                                value={gridData.sectionBackground || ''} 
+                                                onChange={(url) => setGridData({...gridData, sectionBackground: url})} 
+                                                type="image" 
+                                            />
+                                            <p className="text-white-50 mt-3 small">
+                                                This sets the background image for the entire grid area. 
+                                                Recommended: 1920x1080px or higher.
+                                            </p>
+                                        </div>
+                                        <div className="col-lg-6">
+                                            <div className="bg-preview rounded p-2" style={{ border: '1px solid #333', background: '#000' }}>
+                                                <p className="small text-white-50 mb-2">Live Preview (Background Only):</p>
+                                                <div style={{ 
+                                                    height: '150px', 
+                                                    backgroundImage: `url(${gridData.sectionBackground})`, 
+                                                    backgroundSize: 'cover', 
+                                                    backgroundPosition: 'center',
+                                                    border: '1px solid #444',
+                                                    position: 'relative'
+                                                }}>
+                                                    <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)' }}></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className="row">
                             {/* Message from President */}
                             <div className="col-xl-6 mb-30">

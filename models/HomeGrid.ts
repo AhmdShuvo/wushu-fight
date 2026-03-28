@@ -23,9 +23,11 @@ export interface IHomeGrid extends Document {
         content: string;
         image: string;
     };
+    sectionBackground?: string;
 }
 
 const HomeGridSchema: Schema = new Schema({
+    sectionBackground: { type: String, default: '/assets/images/bg/bg-1.png' },
     president: {
         title: { type: String, default: 'Message from the President' },
         content: { type: String, required: true },
