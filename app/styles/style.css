@@ -4255,10 +4255,10 @@ section {
 }
 
 .copyright-area {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  /* padding-top: 30px; */
+  /* padding-bottom: 30px; */
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  margin-top: 110px;
+  /* margin-top: 110px; */
 }
 @media only screen and (max-width: 991px) {
   .copyright-area {
@@ -4401,7 +4401,7 @@ section {
   margin-top: 20px;
 }
 .footer-section-two .copyright-area {
-  margin-top: 120px;
+  /* margin-top: 120px; */
   padding-bottom: 30px;
 }
 

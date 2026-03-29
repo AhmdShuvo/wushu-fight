@@ -86,7 +86,7 @@ export default function HomeContentGrid() {
                                      color: '#fff'
                                  }}>
                                 <div className="d-flex align-items-center mb-4 gap-4">
-                                    <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.1)', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.3)' }}>
+                                    <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.1)', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.3)', marginRight: '25px' }}>
                                         {gridData.president.image ? (
                                             <Image src={gridData.president.image} alt="President" fill style={{ objectFit: 'cover' }} />
                                         ) : (
@@ -113,7 +113,7 @@ export default function HomeContentGrid() {
                                      color: '#fff'
                                  }}>
                                 <div className="d-flex align-items-center mb-4 gap-4">
-                                    <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.1)', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.3)' }}>
+                                    <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.1)', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.3)', marginRight: '25px' }}>
                                         {gridData.secretary.image ? (
                                             <Image src={gridData.secretary.image} alt="Secretary" fill style={{ objectFit: 'cover' }} />
                                         ) : (

@@ -38,25 +38,25 @@ export default function Footer() {
     };
 
     return (
-        <footer id="contact" className="footer-section footer-section-two pt-80" style={{ position: 'relative', backgroundColor: '#0a0a0a', color: '#fff', overflow: 'hidden' }}>
+        <footer id="contact" className="footer-section footer-section-two pt-40" style={{ position: 'relative', backgroundColor: '#0a0a0a', color: '#fff', overflow: 'hidden' }}>
             <div className="footer-bg" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, opacity: 0.1 }}>
                 <img src="/assets/images/bg/bg-4.png" alt="bg" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             
-            <div className="container-fluid px-3 px-lg-5" style={{ position: 'relative', zIndex: 2 }}>
-                <div className="row g-4">
+            <div className="container-fluid px-0" style={{ position: 'relative', zIndex: 2 }}>
+                <div className="row g-4 m-0">
                     {/* Column 1: About & Socials */}
                     <div className="col-xl-4 col-lg-4 col-md-6">
-                        <div className="footer-widget">
+                        <div className="footer-widget w-100">
                             <div className="footer-logo mb-4">
                                 <Link href="/" className="site-logo site-title">
-                                    <img src={contact?.footer?.logo || "/assets/images/wushu_logo.png"} alt="site-logo" style={{ maxWidth: '100px' }} />
+                                    <img src={contact?.footer?.logo || "/assets/images/wushu_logo.png"} alt="site-logo" style={{ maxWidth: '120px' }} />
                                 </Link>
                             </div>
-                            <p className="text-white-50 mb-4" style={{ lineHeight: '1.6', textAlign: 'justify', fontSize: '14px' }}>
+                            <p className="text-white-50 mb-4" style={{ lineHeight: '1.6', textAlign: 'justify', fontSize: '14px', width: '100%' }}>
                                 {contact?.footer?.description || "Bangladesh Wushu Federation (BWUF) is the sole authority for Wushu in Bangladesh, dedicated to promoting martial arts excellence and discipline since 1986. We are affiliated with SAWUF, WFA, and IWUF."}
                             </p>
-                            <ul className="footer-social d-flex gap-3 p-0 m-0" style={{ listStyle: 'none' }}>
+                            <ul className="footer-social d-flex p-0 m-0" style={{ listStyle: 'none', gap: '20px' }}>
                                 <li><a href={socials.facebook} target="_blank" className="social-link"><i className="fab fa-facebook-f"></i></a></li>
                                 <li><a href={socials.instagram} target="_blank" className="social-link"><i className="fab fa-instagram"></i></a></li>
                                 <li><a href={socials.twitter} target="_blank" className="social-link"><i className="fab fa-twitter"></i></a></li>
@@ -65,21 +65,21 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Column 2: Quick Links (Condensed Center) */}
-                    <div className="col-xl-3 col-lg-3 col-md-6">
-                        <div className="footer-widget text-center">
-                            <h4 className="title text-white mb-4" style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '2px solid #dc3545', display: 'inline-block', paddingBottom: '5px' }}>Quick Links</h4>
+                    {/* Column 2: Quick Links (Centered 2-Column Grid) */}
+                    <div className="col-xl-4 col-lg-4 col-md-6">
+                        <div className="footer-widget" style={{ textAlign: 'center' }}>
+                            <h4 className="title text-white mb-3" style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px', borderBottom: '2px solid #dc3545', display: 'inline-block', paddingBottom: '5px' }}>Quick Links</h4>
                             <div className="footer-gallery-area d-flex justify-content-center">
-                                <div className="footer-gallery-wrapper d-flex flex-nowrap gap-3">
+                                <div className="footer-gallery-wrapper d-grid gap-2" style={{ gridTemplateColumns: 'repeat(2, 60px)', width: 'fit-content' }}>
                                     {contact?.quickLinks?.map((link: any, idx: number) => (
-                                        <div className="footer-gallery-thumb" key={idx} style={{ width: '50px', height: '50px', overflow: 'hidden', border: '1px solid #333', borderRadius: '6px', transition: 'all 0.3s ease' }}>
+                                        <div className="footer-gallery-thumb" key={idx} style={{ width: '60px', height: '60px', overflow: 'hidden', border: '1px solid #333', borderRadius: '6px', transition: 'all 0.3s ease' }}>
                                             <Link href={link.url} target="_blank" className="w-100 h-100 d-block">
                                                 <img src={link.image} alt="link" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px', backgroundColor: '#fff' }} />
                                             </Link>
                                         </div>
                                     ))}
                                     {!contact?.quickLinks?.length && [4, 5, 6, 7].map(n => (
-                                        <div className="footer-gallery-thumb" key={n} style={{ width: '50px', height: '50px', overflow: 'hidden', border: '1px solid #333', borderRadius: '6px', transition: 'all 0.3s ease' }}>
+                                        <div className="footer-gallery-thumb" key={n} style={{ width: '60px', height: '60px', overflow: 'hidden', border: '1px solid #333', borderRadius: '6px', transition: 'all 0.3s ease' }}>
                                             <Link href="#" className="w-100 h-100 d-block">
                                                 <img src={`/assets/images/quicklinks/Picture${n}.png`} alt="link" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px', backgroundColor: '#fff' }} />
                                             </Link>
@@ -90,43 +90,42 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Column 3: Contact Details (Straight Alignment Focal Point) */}
-                    <div className="col-xl-5 col-lg-5 col-md-12 d-flex flex-column align-items-center align-items-lg-end">
-                        <div className="footer-widget mx-auto ml-lg-auto" style={{ textAlign: 'left', maxWidth: '300px' }}>
-                            <div className="text-center text-lg-right w-100">
-                                <h4 className="title text-white mb-4" style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '2px solid #dc3545', display: 'inline-block', paddingBottom: '8px' }}>Contact Us</h4>
+                    {/* Column 3: Contact Details (Expanded) */}
+                    <div className="col-xl-4 col-lg-4 col-md-12">
+                        <div className="footer-widget" style={{ textAlign: 'left', width: '100%' }}>
+                            <div className="text-left w-100">
+                                <h4 className="title text-white mb-3" style={{ fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '2px solid #dc3545', display: 'inline-block', paddingBottom: '8px' }}>Contact Us</h4>
                             </div>
                             <ul className="footer-list p-0 m-0" style={{ listStyle: 'none' }}>
-                                <li className="mb-4 d-flex gap-3 align-items-start">
-                                    <div className="contact-icon-circle mt-1">
+                                <li className="d-flex align-items-start" style={{ gap: '2.5rem', marginBottom: '32px' }}>
+                                    <div className="contact-icon-circle">
                                         <i className="fas fa-map-marker-alt"></i>
                                     </div>
-                                    <div style={{ textAlign: 'left' }}>
-                                        <span className="d-block text-white mb-1" style={{ fontWeight: 700, fontSize: '14px', letterSpacing: '1px', textTransform: 'uppercase' }}>HQ Address</span>
-                                        <span className="text-white-50" style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                                            {address.room}, {address.floor}<br />
-                                            {address.building}<br />
+                                    <div style={{ textAlign: 'left', width: 'calc(100% - 80px)' }}>
+                                        <h6 className="text-white mb-2" style={{ fontWeight: 800, fontSize: '15px', letterSpacing: '1px', textTransform: 'uppercase' }}>HQ Address</h6>
+                                        <span className="text-white-50" style={{ fontSize: '15px', lineHeight: '1.8', display: 'block' }}>
+                                            {address.room}, {address.floor}, {address.building}<br />
                                             {address.street}, {address.area}<br />
                                             {address.city} - {address.zip}, {address.country}
                                         </span>
                                     </div>
                                 </li>
-                                <li className="mb-3 d-flex gap-3 align-items-center">
+                                <li className="d-flex align-items-start" style={{ gap: '2.5rem', marginBottom: '32px' }}>
                                     <div className="contact-icon-circle">
                                         <i className="fas fa-envelope"></i>
                                     </div>
-                                    <div style={{ textAlign: 'left' }}>
-                                        <span className="d-block text-white" style={{ fontWeight: 700, fontSize: '14px', textTransform: 'uppercase' }}>Email Support</span>
-                                        <span className="text-white-50 small">{contact?.email || 'wushubd@gmail.com'}</span>
+                                    <div style={{ textAlign: 'left', width: 'calc(100% - 80px)' }}>
+                                        <h6 className="text-white mb-2" style={{ fontWeight: 800, fontSize: '15px', textTransform: 'uppercase' }}>Email Support</h6>
+                                        <span className="text-white-50" style={{ fontSize: '15px', display: 'block' }}>{contact?.email || 'wushubd@gmail.com'}</span>
                                     </div>
                                 </li>
-                                <li className="d-flex gap-3 align-items-center">
+                                <li className="d-flex align-items-start" style={{ gap: '2.5rem', marginBottom: '0' }}>
                                     <div className="contact-icon-circle">
                                         <i className="fas fa-phone-alt"></i>
                                     </div>
-                                    <div style={{ textAlign: 'left' }}>
-                                        <span className="d-block text-white" style={{ fontWeight: 700, fontSize: '14px', textTransform: 'uppercase' }}>Hotline No.</span>
-                                        <span className="text-white-50 small">{contact?.phone?.telephone || '+88 02 9565503'}</span>
+                                    <div style={{ textAlign: 'left', width: 'calc(100% - 80px)' }}>
+                                        <h6 className="text-white mb-2" style={{ fontWeight: 800, fontSize: '15px', textTransform: 'uppercase' }}>Hotline No.</h6>
+                                        <span className="text-white-50" style={{ fontSize: '15px', display: 'block' }}>{contact?.phone?.telephone || '+88 02 9565503'}</span>
                                     </div>
                                 </li>
                             </ul>
