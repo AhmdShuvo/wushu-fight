@@ -20,6 +20,7 @@ export default function AdminDashboard() {
         { name: 'Admin/Team Members', href: '/admin/members', icon: 'fa-user-tie', category: 'GLOBAL' },
         { name: 'System Activity Logs', href: '/admin/activity', icon: 'fa-history', category: 'GLOBAL' },
         { name: 'Testimonial Moderation', href: '/admin/testimonials', icon: 'fa-comment-dots', category: 'GLOBAL' },
+        { name: 'Resource Library', href: '/admin/resources', icon: 'fa-book', category: 'GLOBAL' },
         { name: 'Footer Quick Links', href: '/admin/contact#footer', icon: 'fa-link', category: 'GLOBAL' },
 
     ];

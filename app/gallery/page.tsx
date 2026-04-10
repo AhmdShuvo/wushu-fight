@@ -81,18 +81,18 @@ export default function GalleryPage() {
                     <div className="row justify-content-center">
                         <div className="col-xl-8 text-center mb-60">
                             <div className="section-header" data-aos="fade-up">
-                                <h2 className="section-title text-black">BENTO <span>STORAGE</span></h2>
+                                <h2 className="section-title text-black">OUR <span>GALLERY</span></h2>
                                 <p className="text-secondary">A modular, high-impact collection of Wushu Bangladesh greatness.</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     {/* Navigation Bar (Glassy White) */}
                     <div className="gallery-nav-bar mb-60 text-center">
                         <div className="bento-pill-group">
                             {categories.map((cat) => (
-                                <button 
-                                    key={cat.filter} 
+                                <button
+                                    key={cat.filter}
                                     onClick={() => handleCategoryChange(cat.filter)}
                                     className={`bento-pill ${category === cat.filter ? 'active' : ''}`}
                                 >
@@ -103,68 +103,68 @@ export default function GalleryPage() {
                     </div>
 
                     {loading ? (
-                            <div className="text-center py-120">
-                                <div className="spinner-border text-acc-green lg"></div>
-                                <p className="mt-4 text-dark text-uppercase tracking-max">Packing Bento Boxes...</p>
-                            </div>
-                        ) : (
-                            <div className="bento-grid-master">
-                                {items.map((item, index) => (
-                                    <div 
-                                        key={item._id} 
-                                        className={`bento-box-item ${getBentoClass(index)}`}
-                                        onClick={() => setSelectedImage(item)}
-                                    >
-                                        <div className="bento-card">
-                                            <img src={item.imageUrl} alt={item.title} className="bento-img" />
-                                            <div className="bento-overlay">
-                                                <div className="bento-content">
-                                                    <div className="bento-tag">{item.category}</div>
-                                                    <h4 className="bento-title-text">{item.title || 'Wushu Bangladesh'}</h4>
-                                                    <div className="bento-zoom"><i className="fas fa-expand-alt"></i></div>
-                                                </div>
+                        <div className="text-center py-120">
+                            <div className="spinner-border text-acc-green lg"></div>
+                            <p className="mt-4 text-dark text-uppercase tracking-max">Loading Gallery...</p>
+                        </div>
+                    ) : (
+                        <div className="bento-grid-master">
+                            {items.map((item, index) => (
+                                <div
+                                    key={item._id}
+                                    className={`bento-box-item ${getBentoClass(index)}`}
+                                    onClick={() => setSelectedImage(item)}
+                                >
+                                    <div className="bento-card">
+                                        <img src={item.imageUrl} alt={item.title} className="bento-img" />
+                                        <div className="bento-overlay">
+                                            <div className="bento-content">
+                                                <div className="bento-tag">{item.category}</div>
+                                                <h4 className="bento-title-text">{item.title || 'Wushu Bangladesh'}</h4>
+                                                <div className="bento-zoom"><i className="fas fa-expand-alt"></i></div>
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
-                        )}
-
-                        {/* Simple Pagination */}
-                        {totalPages > 1 && (
-                            <div className="pagination-wrapper-bento mt-80">
-                                {[...Array(totalPages)].map((_, i) => (
-                                    <button 
-                                        key={i} 
-                                        className={`bento-page-dot ${page === i + 1 ? 'active' : ''}`}
-                                        onClick={() => handlePageChange(i + 1)}
-                                    >
-                                        {i + 1}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </section>
-
-                {/* Premium Lightbox */}
-                {selectedImage && (
-                    <div className="bento-lightbox-master" onClick={() => setSelectedImage(null)}>
-                        <div className="bento-backdrop"></div>
-                        <div className="bento-container-inner" onClick={(e) => e.stopPropagation()}>
-                            <button className="bento-close" onClick={() => setSelectedImage(null)}>&times;</button>
-                            <div className="bento-frame">
-                                <img src={selectedImage.imageUrl} alt={selectedImage.title} className="bento-full-img" />
-                                <div className="bento-info-box">
-                                    <h3>{selectedImage.title}</h3>
-                                    <p className="bento-cat-text">{selectedImage.category}</p>
                                 </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Simple Pagination */}
+                    {totalPages > 1 && (
+                        <div className="pagination-wrapper-bento mt-80">
+                            {[...Array(totalPages)].map((_, i) => (
+                                <button
+                                    key={i}
+                                    className={`bento-page-dot ${page === i + 1 ? 'active' : ''}`}
+                                    onClick={() => handlePageChange(i + 1)}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            {/* Premium Lightbox */}
+            {selectedImage && (
+                <div className="bento-lightbox-master" onClick={() => setSelectedImage(null)}>
+                    <div className="bento-backdrop"></div>
+                    <div className="bento-container-inner" onClick={(e) => e.stopPropagation()}>
+                        <button className="bento-close" onClick={() => setSelectedImage(null)}>&times;</button>
+                        <div className="bento-frame">
+                            <img src={selectedImage.imageUrl} alt={selectedImage.title} className="bento-full-img" />
+                            <div className="bento-info-box">
+                                <h3>{selectedImage.title}</h3>
+                                <p className="bento-cat-text">{selectedImage.category}</p>
                             </div>
                         </div>
                     </div>
-                )}
+                </div>
+            )}
 
-                <style jsx global>{`
+            <style jsx global>{`
                     .gallery-page-root { background: #fff; }
                     .text-acc-green { color: #3ee80f !important; }
                     

@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IMedia extends Document {
     url: string;
     filename: string;
-    type: 'image' | 'video' | 'pdf' | 'other';
+    type: 'image' | 'video' | 'pdf' | 'document' | 'other';
     size: number;
     createdAt: Date;
 }
@@ -11,7 +11,7 @@ export interface IMedia extends Document {
 const MediaSchema: Schema = new Schema({
     url: { type: String, required: true },
     filename: { type: String, required: true },
-    type: { type: String, required: true, enum: ['image', 'video', 'pdf', 'other'] },
+    type: { type: String, required: true, enum: ['image', 'video', 'pdf', 'document', 'other'] },
     size: { type: Number },
 }, { timestamps: true });
 

@@ -642,7 +642,7 @@ blockquote .quote-icon {
 }
 
 .bg--base {
-  background-color: #3ee80 !important;
+  background-color: #3ee80f !important;
 }
 
 .text--primary {
@@ -674,11 +674,11 @@ blockquote .quote-icon {
 }
 
 .text--base {
-  color: #3ee80 !important;
+  color: #3ee80f !important;
 }
 
 .border--primary {
-  border: #7367f0;
+  border: 1px solid #7367f0;
 }
 
 .border--secondary {

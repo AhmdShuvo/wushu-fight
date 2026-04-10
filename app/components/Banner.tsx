@@ -110,7 +110,8 @@ export default function Banner() {
                                                 <h1 className="title text-white" style={{ fontSize: '56px', marginBottom: '15px', fontWeight: 900, textTransform: 'uppercase', lineHeight: '1.1' }}>{banner.title}</h1>
                                                 <h3 className="inner-title text-white-50" style={{ fontSize: '28px', marginBottom: '20px', fontWeight: 600 }}>{banner.innerTitle}</h3>
                                                 <p className="text-white-50" style={{ fontSize: '18px', marginBottom: '30px', maxWidth: '700px', margin: '0 auto 30px', lineHeight: '1.6' }}>{banner.description}</p>
-                                                <div className="banner-btn" style={{ gap: '15px', justifyContent: 'center', display: 'flex' }}>
+                                                 <div className="banner-btn" style={{ gap: '15px', justifyContent: 'center', display: 'flex' }}>
+                                                    {/* 
                                                     <Link
                                                         href={banner.buttonLink || '/apply'}
                                                         className="btn--base"
@@ -125,6 +126,7 @@ export default function Banner() {
                                                     >
                                                         Training Classes
                                                     </Link>
+                                                    */}
                                                 </div>
                                             </div>
 

@@ -10,10 +10,17 @@ import { logActivity } from '../../../lib/activity';
 const ALLOWED_MIME_TYPES = [
     'image/jpeg', 'image/png', 'image/webp', 'image/gif', 
     'application/pdf', 
-    'video/mp4', 'video/webm', 'video/quicktime', 'video/x-msvideo'
+    'video/mp4', 'video/webm', 'video/quicktime', 'video/x-msvideo',
+    'application/msword', 
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/vnd.ms-powerpoint',
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'text/plain'
 ];
 
-const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'pdf', 'mp4', 'webm', 'mov', 'avi'];
+const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'pdf', 'mp4', 'webm', 'mov', 'avi', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'txt'];
 
 const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB default
 const MAX_VIDEO_SIZE = 1000 * 1024 * 1024; // 1000MB for videos
@@ -72,10 +79,11 @@ export async function POST(request: Request) {
         const url = `/uploads/${filename}`;
         
         // Categorize file for Model
-        let type: 'image' | 'video' | 'pdf' | 'other' = 'other';
+        let type: 'image' | 'video' | 'pdf' | 'document' | 'other' = 'other';
         if (file.type.startsWith('image/')) type = 'image';
         else if (file.type.startsWith('video/')) type = 'video';
         else if (file.type === 'application/pdf') type = 'pdf';
+        else if (file.type.includes('msword') || file.type.includes('officedocument') || file.type.includes('ms-')) type = 'document';
 
         // Save to DB
         const media = await Media.create({

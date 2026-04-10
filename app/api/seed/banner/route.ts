@@ -11,7 +11,12 @@ import Feature from '@/models/Feature';
 import Schedule from '@/models/Schedule';
 import Gallery from '@/models/Gallery';
 
+import { adminProtectedRoute } from '@/lib/auth';
+
 export async function GET() {
+    const authError = await adminProtectedRoute();
+    if (authError) return authError;
+
     await dbConnect();
 
     const currentBanners = [
