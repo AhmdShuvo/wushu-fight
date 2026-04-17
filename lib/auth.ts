@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
-import { UserRole } from "@/models/User";
+import { UserRole } from "@/types/roles";
 
 export async function getAuthSession() {
     return await getServerSession(authOptions);

@@ -102,32 +102,32 @@ export default function MembersAdmin() {
 
     if (loading) {
         return (
-            <>
-                <InnerBanner title="MEMBERS" subtitle="ADMIN" bgImage="/assets/images/bg/bg-12.png" activePage="Loading..." />
-                <div className="ptb-120 text-center"><h2 className="text-white">Loading...</h2></div>
-            </>
+            <div className="text-center py-5">
+                <div className="spinner-border text-success"></div>
+                <h4 className="mt-3">Loading Members...</h4>
+            </div>
         )
     }
 
     return (
-        <>
-            <InnerBanner title="MEMBERS" subtitle="ADMIN" bgImage="/assets/images/bg/bg-12.png" activePage="Manage Our People" />
+        <div className="admin-page-content">
+            <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                <div>
+                    <h2 className="m-0 font-weight-bold">Registry <span className="text-success">Management</span></h2>
+                    <p className="text-muted small m-0">Create and manage your organization's members and executive committee.</p>
+                </div>
+                <div className="d-flex gap-2">
+                    <button onClick={() => { resetForm(); setShowModal(true); }} className="btn btn-success shadow-sm d-flex align-items-center gap-2">
+                        <i className="fas fa-user-plus"></i> Add New Member
+                    </button>
+                    <button onClick={fetchMembers} className="btn btn-outline-dark shadow-sm">
+                        <i className="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
 
-            <section className="account-widget-section ptb-120" style={{ backgroundColor: '#000' }}>
-                <div className="container" style={{ maxWidth: '1400px' }}>
-                    <div className="d-flex justify-content-between align-items-center mb-60 flex-wrap gap-4">
-                        <div className="section-header mb-0">
-                            <h2 className="section-title">Manage <span>Wushu</span> Members</h2>
-                        </div>
-                        <div className="d-flex gap-3">
-                            <button onClick={() => { resetForm(); setShowModal(true); }} className="btn--base">
-                                <i className="fas fa-plus mr-2"></i> Add Member
-                            </button>
-                            <Link href="/admin" className="btn--base bg-dark">Back to Dashboard <i className="fas fa-arrow-right ml-2"></i></Link>
-                        </div>
-                    </div>
-
-                    <div className="row g-4">
+            <section className="members-grid-section">
+                <div className="row g-4">
                         {members.map((member) => (
                             <div key={member._id} className="col-xl-4 col-lg-6">
                                 <div className="card h-100 shadow border-0 overflow-hidden" style={{ background: '#111', borderRadius: '15px', border: member.category === 'founding' ? '1px solid #3ee80f' : '1px solid #333' }}>
@@ -155,8 +155,6 @@ export default function MembersAdmin() {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                </div>
             </section>
 
             {/* Member Form Modal */}
@@ -212,6 +210,7 @@ export default function MembersAdmin() {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 }
+

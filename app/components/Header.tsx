@@ -265,7 +265,7 @@ export default function Header() {
                                              }
                                          }
 
-                                    `}</style>
+                                     `}</style>
                                     <ul className="navbar-nav main-menu custom-nav ml-auto mr-auto align-items-center">
 
                                         <li className={isActive('/')}><Link href="/">HOME</Link></li>
@@ -333,6 +333,8 @@ export default function Header() {
 
                                         <li className={isActive('/gallery')}><Link href="/gallery">GALLERY</Link></li>
                                         <li className={isActive('/contact')}><Link href="/contact">CONTACT US</Link></li>
+
+                                        <li className={isActive(session ? '/admin' : '/login')}><Link href={session ? "/admin" : "/login"}>{session ? "DASHBOARD" : "SIGN IN"}</Link></li>
                                     </ul>
                                 </div>
                             </nav>

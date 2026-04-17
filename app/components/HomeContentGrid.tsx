@@ -88,7 +88,7 @@ export default function HomeContentGrid() {
                                 <div className="d-flex align-items-center mb-4 gap-4">
                                     <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.1)', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.3)', marginRight: '25px' }}>
                                         {gridData.president.image ? (
-                                            <Image src={gridData.president.image} alt="President" fill style={{ objectFit: 'cover' }} />
+                                            <Image src={gridData.president.image} alt="President of Bangladesh Wushu Federation" fill style={{ objectFit: 'cover' }} />
                                         ) : (
                                             <div className="bg-dark w-100 h-100 d-flex align-items-center justify-content-center text-muted">No Image</div>
                                         )}
@@ -115,7 +115,7 @@ export default function HomeContentGrid() {
                                 <div className="d-flex align-items-center mb-4 gap-4">
                                     <div style={{ position: 'relative', width: '100px', height: '100px', overflow: 'hidden', border: '3px solid rgba(255,255,255,0.1)', flexShrink: 0, boxShadow: '0 8px 15px rgba(0,0,0,0.3)', marginRight: '25px' }}>
                                         {gridData.secretary.image ? (
-                                            <Image src={gridData.secretary.image} alt="Secretary" fill style={{ objectFit: 'cover' }} />
+                                            <Image src={gridData.secretary.image} alt="Secretary General of Bangladesh Wushu Federation" fill style={{ objectFit: 'cover' }} />
                                         ) : (
                                             <div className="bg-dark w-100 h-100 d-flex align-items-center justify-content-center text-muted">No Image</div>
                                         )}
@@ -146,7 +146,7 @@ export default function HomeContentGrid() {
                                 <div className="row align-items-center g-4">
                                     <div className="col-md-5">
                                         <div className="history-image-frame position-relative" style={{ height: '350px', overflow: 'hidden', boxShadow: '0 15px 30px rgba(0,0,0,0.4)', borderRadius: '4px' }}>
-                                            <Image src={gridData.history.image || '/assets/images/bg/bg-11.png'} alt="History" fill style={{ objectFit: 'cover' }} />
+                                            <Image src={gridData.history.image || '/assets/images/bg/bg-11.png'} alt="History of Wushu in Bangladesh - BWUF" fill style={{ objectFit: 'cover' }} />
                                             <div className="overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%)' }}></div>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@ export default function HomeContentGrid() {
                                     </div>
                                     <div className="col-lg-5">
                                         <div className="about-stats-container position-relative" style={{ height: '300px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px', boxShadow: '0 15px 30px rgba(0,0,0,0.4)' }}>
-                                            <Image src={gridData.about.image || '/assets/images/bg/bg-12.png'} alt="About" fill style={{ objectFit: 'cover' }} />
+                                            <Image src={gridData.about.image || '/assets/images/bg/bg-12.png'} alt="About Bangladesh Wushu Federation - Wushubd" fill style={{ objectFit: 'cover' }} />
                                         </div>
                                     </div>
                                 </div>

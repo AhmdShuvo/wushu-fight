@@ -23,9 +23,97 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Wushu - Wushu & Kung Fu Fighting Federation",
-  description: "Master the art of Wushu and Kung Fu at Wushu Fighting Federation. Join us for traditional and modern martial arts training.",
+  metadataBase: new URL("https://wushubd.com"),
+  title: {
+    default: "Wushu - Bangladesh Wushu Federation | Wushubd",
+    template: "%s | Bangladesh Wushu Federation",
+  },
+  description: "Official portal of the Bangladesh Wushu Federation. Master the art of Wushu and Kung Fu. Join us for traditional and modern martial arts training in Bangladesh.",
+  keywords: [
+    "wushu",
+    "wushu federation",
+    "wushubd",
+    "bangladesh wushu",
+    "wushu bangladesh",
+    "martial arts bangladesh",
+    "kung fu bangladesh",
+    "wushu training",
+    "wushu competition",
+  ],
+  authors: [{ name: "Bangladesh Wushu Federation" }],
+  creator: "Bangladesh Wushu Federation",
+  publisher: "Bangladesh Wushu Federation",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_BD",
+    url: "https://wushubd.com",
+    siteName: "Bangladesh Wushu Federation",
+    title: "Bangladesh Wushu Federation - Mastering Martials Arts",
+    description: "The official home of Wushu in Bangladesh. Promoting excellence in traditional and contemporary martial arts.",
+    images: [
+      {
+        url: "/assets/images/wushu_logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Bangladesh Wushu Federation Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bangladesh Wushu Federation",
+    description: "Official portal of the Bangladesh Wushu Federation. Join our martial arts community.",
+    images: ["/assets/images/wushu_logo.png"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/assets/images/fav.png",
+    apple: "/assets/images/fav.png",
+  },
+  verification: {
+    google: "google-site-verification-id",
+  },
 };
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bangladesh Wushu Federation",
+  "url": "https://wushubd.com",
+  "logo": "https://wushubd.com/assets/images/wushu_logo.png",
+  "sameAs": [
+    "https://facebook.com/wushubangladesh",
+    "https://twitter.com/wushubd",
+    "https://instagram.com/wushubd"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+880-2-9565503",
+    "contactType": "customer service",
+    "areaServed": "BD",
+    "availableLanguage": ["Bengali", "English"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Room 32, 2nd Floor, Bangabandhu National Stadium, Puraana Paltan",
+    "addressLocality": "Dhaka",
+    "postalCode": "1000",
+    "addressCountry": "BD"
+  }
+};
+
+
 
 import { Toaster } from "react-hot-toast";
 
@@ -37,6 +125,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css" />
         <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/assets/css/swiper.min.css" />

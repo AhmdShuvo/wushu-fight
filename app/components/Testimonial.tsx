@@ -93,6 +93,8 @@ export default function Testimonial() {
     return (
         <section className="client-section ptb-120" style={{ backgroundColor: '#fff' }}>
             <div className="container">
+                {/* Commenting out redundant first header and grid section */}
+                {/* 
                 <div className="row">
                     <div className="col-xl-12">
                         <div className="section-header-wrapper">
@@ -108,6 +110,7 @@ export default function Testimonial() {
                         </div>
                     </div>
                 </div>
+                */}
 
                 {showForm && (
                      <div className="row justify-content-center mb-60">
@@ -152,7 +155,8 @@ export default function Testimonial() {
                  </div>
                 )}
 
-                {/* Part 1: Original Testimonial Grid */}
+                {/* Part 1: Original Testimonial Grid (Commented Out) */}
+                {/* 
                 <div className="client-area mb-80">
                     <div className="row justify-content-center">
                         <div className="col-xl-10">
@@ -189,15 +193,21 @@ export default function Testimonial() {
                         </div>
                     </div>
                 </div>
+                */}
 
                 {/* Part 2: Featured Testimonial Slider */}
-                <div className="client-area mt-80 border-top pt-80">
+                <div className="client-area mt-80">
                     <div className="row justify-content-center">
                         <div className="col-xl-12">
                              <div className="section-header-wrapper mb-5">
                                 <div className="section-header">
                                     <h2 className="section-title text-dark">STUDENT <span>TESTIMONIALS</span></h2>
                                     <p className="text-muted">Celebrating the dedication and progress of our martial arts community in motion.</p>
+                                </div>
+                                <div className="slider-nav-area">
+                                    <button onClick={() => setShowForm(!showForm)} className="btn--base" style={{ fontSize: '13px', padding: '10px 20px' }}>
+                                        {showForm ? 'Cancel Submission' : 'Submit Testimonial'}
+                                    </button>
                                 </div>
                             </div>
                             <Swiper
@@ -292,4 +302,3 @@ export default function Testimonial() {
         </section>
     );
 }
-

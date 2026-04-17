@@ -1,10 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export enum UserRole {
-    USER = 'user',
-    ADMIN = 'admin',
-    SUPER_ADMIN = 'super_admin'
-}
+import { UserRole } from '@/types/roles';
+export { UserRole };
 
 export interface IUser extends Document {
     name: string;

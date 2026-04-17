@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
-import User, { UserRole } from '@/models/User';
+import User from '@/models/User';
+import { UserRole } from '@/types/roles';
 import bcrypt from 'bcryptjs';
 
 export async function GET() {
@@ -10,18 +11,18 @@ export async function GET() {
         const email = "admin11@example.com";
         const password = "adminpassword123";
 
-        // Check if super admin already exists
+        // Check if admin already exists
         const existingUser = await User.findOne({ role: UserRole.ADMIN });
         if (existingUser) {
             return NextResponse.json({
-                message: "Super Admin already exists",
+                message: "Admin already exists",
                 email: existingUser.email
             });
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const superAdmin = await User.create({
+        const adminUser = await User.create({
             name: "Admin",
             email: email,
             password: hashedPassword,
@@ -29,7 +30,7 @@ export async function GET() {
         });
 
         return NextResponse.json({
-            message: "Super Admin seeded successfully",
+            message: "Admin seeded successfully",
             credentials: {
                 email: email,
                 password: password,
