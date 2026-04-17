@@ -6,12 +6,12 @@ import bcrypt from 'bcryptjs';
 
 export async function PATCH(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const authError = await adminProtectedRoute();
     if (authError) return authError;
 
-    const { id } = params;
+    const { id } = await params;
     await dbConnect();
 
     try {
@@ -46,12 +46,12 @@ export async function PATCH(
 
 export async function DELETE(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const authError = await adminProtectedRoute();
     if (authError) return authError;
 
-    const { id } = params;
+    const { id } = await params;
     await dbConnect();
 
     try {
