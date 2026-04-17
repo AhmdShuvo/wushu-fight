@@ -155,6 +155,7 @@ export default function MembersAdmin() {
                                 </div>
                             </div>
                         ))}
+                </div>
             </section>
 
             {/* Member Form Modal */}
