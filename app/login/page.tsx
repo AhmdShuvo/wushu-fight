@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
@@ -72,14 +73,37 @@ export default function LoginPage() {
                     </div>
                     <div className="mb-4">
                         <label className="form-label text-dark">Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            placeholder="••••••••"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
+                        <div style={{ position: 'relative' }}>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                className="form-control"
+                                placeholder="••••••••"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                style={{ paddingRight: '45px' }}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    background: 'none',
+                                    border: 'none',
+                                    color: '#6c757d',
+                                    cursor: 'pointer',
+                                    padding: '5px',
+                                    zIndex: 10,
+                                    outline: 'none'
+                                }}
+                                title={showPassword ? "Hide password" : "Show password"}
+                            >
+                                <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} style={{ fontSize: '1.1rem' }}></i>
+                            </button>
+                        </div>
                     </div>
                     <button
                         type="submit"
