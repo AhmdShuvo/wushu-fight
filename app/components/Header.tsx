@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
+import GoogleTranslator from './GoogleTranslator';
 
 export default function Header() {
     const { data: session } = useSession();
@@ -99,6 +100,17 @@ export default function Header() {
     return (
         <header className={getHeaderClass()} style={{ zIndex: 9999, width: '100%', ...(isSticky ? {} : { position: 'relative', backgroundColor: '#080808' }) }}>
             <div className="header">
+                {/* Header Top Area for Language Translation */}
+                {!isSticky && (
+                    <div className="header-top-area" style={{ backgroundColor: '#080808', borderBottom: '1px solid rgba(255,255,255,0.05)', padding: '8px 0' }}>
+                        <div className="container-fluid">
+                            <div className="header-top-content d-flex justify-content-center justify-content-md-end align-items-center" style={{ gap: '20px' }}>
+                                <GoogleTranslator />
+                            </div>
+                        </div>
+                    </div>
+                )}
+                
                 <div className="header-bottom-area">
                     <div className="container-fluid">
                         <div className="header-menu-content">

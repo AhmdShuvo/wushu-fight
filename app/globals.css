@@ -357,3 +357,64 @@ a {
 .custom-table { border-radius: 15px; overflow: hidden; border: none; }
 .custom-table tbody td { vertical-align: middle; border-color: rgba(255,255,255,0.05); }
 .custom-table thead th { background-color: #3ee80f; color: black; border: none; text-transform: uppercase; }
+
+/* --- Google Translate Styles --- */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+
+#google_translate_element {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.goog-te-gadget-simple {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(62, 232, 15, 0.3) !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.goog-te-gadget-simple:hover {
+  background-color: rgba(62, 232, 15, 0.1) !important;
+  border-color: #3ee80f !important;
+}
+
+.goog-te-gadget-simple span {
+    color: #fff !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+.goog-te-gadget-icon {
+    display: none !important;
+}
+
+.goog-te-menu-value span:nth-child(3) {
+    border-left: 1px solid rgba(255,255,255,0.1) !important;
+    margin-left: 8px !important;
+    padding-left: 8px !important;
+    color: #3ee80f !important;
+}
+
+.goog-te-menu-value span:nth-child(5) {
+    display: none !important;
+}
+
+.goog-te-menu-frame {
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+#goog-gt-tt {
+    display: none !important;
+    visibility: hidden !important;
+}
